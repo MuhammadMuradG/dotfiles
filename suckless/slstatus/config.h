@@ -81,6 +81,7 @@ static const struct arg args[] = {
 	{ separator,	SEPARATOR,		NULL },
 
 	{ vol_perc,     " %s%%",               "/dev/mixer" },
+	{ separator,    SEPARATOR,              NULL },
 
 	{ keymap,	"%s",			NULL },
 	{ separator,	SEPARATOR,		NULL },
