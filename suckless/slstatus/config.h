@@ -6,6 +6,8 @@ const unsigned int interval = 1000;
 /* text to show if no value can be retrieved */
 static const char unknown_str[] = "n/a";
 
+static const char* const SEPARATOR = "|";
+
 /* maximum output string length */
 #define MAXLEN 2048
 
@@ -65,12 +67,23 @@ static const char unknown_str[] = "n/a";
  */
 static const struct arg args[] = {
 	/* function format          argument */
-	{ battery_state, "%s%% |",                NULL },
-	{ battery_perc,  "%s%% |",                NULL },
-	{ cpu_perc,     "CPU: %s%% |",            NULL },
-	{ ram_perc,     "RAM: %s%% |",            NULL },
-	{ wifi_perc,    "WIFI: %s%% |",        "wlan0" },
-	{ vol_perc,     "vol: %s%% |",    "/dev/mixer" },
-	{ keymap,       "%s%% |",                 NULL },
-	{ datetime,     "%s",           "%a, %b %d %R" },
+	{ separator,	SEPARATOR,		NULL },
+	{ battery_perc,	" %s%% ",		NULL },
+	{ separator,	SEPARATOR,		NULL },
+
+	{ ram_perc,	" %s%%",		NULL },
+	{ separator,	SEPARATOR,		NULL },
+
+	{ cpu_perc,	" %s%%",		NULL },
+	{ separator,	SEPARATOR,		NULL },
+
+	{ wifi_perc,	" %s%%",		"wlan0" },
+	{ separator,	SEPARATOR,		NULL },
+
+	{ vol_perc,     " %s%%",               "/dev/mixer" },
+
+	{ keymap,	"%s",			NULL },
+	{ separator,	SEPARATOR,		NULL },
+
+	{ datetime,	"%s",			"%a,%b %d %R" },
 };
