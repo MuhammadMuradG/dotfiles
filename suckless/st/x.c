@@ -804,7 +804,6 @@ xloadcols(void)
 			else
 				die("could not allocate color %d\n", i);
 		}
-	loaded = 1;
 	if (dc.collen) // cannot die, as the color is already loaded.
 		xloadcolor(focused ?bg :bgUnfocused, NULL, &dc.col[defaultbg]);
 
