@@ -117,11 +117,6 @@ static const char *colorname[] = {
 	[13] = "#d3869b", /* magenta */
 	[14] = "#8ec07c", /* cyan    */
 	[15] = "#ebdbb2", /* white   */
-
-	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
-	"black",
 };
 
 
@@ -133,7 +128,6 @@ unsigned int defaultfg = 15;
 unsigned int defaultbg = 0;
 static unsigned int defaultcs = 15;
 static unsigned int defaultrcs = 257;
-unsigned int bg = 17, bgUnfocused = 16;
 
 /*
  * Default shape of cursor
