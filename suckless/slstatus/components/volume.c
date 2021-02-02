@@ -7,7 +7,7 @@
 
 #include "../util.h"
 
-#if defined(__OpenBSD__) | defined(__FreeBSD__)
+#if defined(__OpenBSD__)
 	#include <sys/queue.h>
 	#include <poll.h>
 	#include <sndio.h>
