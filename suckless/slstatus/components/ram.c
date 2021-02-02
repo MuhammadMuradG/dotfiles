@@ -178,7 +178,7 @@
 
 	const char *
 	ram_total(void) {
-		long npages;
+		unsigned int npages;
 		size_t len;
 
 		len = sizeof(npages);
@@ -191,16 +191,17 @@
 
 	const char *
 	ram_perc(void) {
-		long npages;
-		long active;
-		size_t len;
+		unsigned int npages;
+		unsigned int active;
+		size_t len_pg, len_act;
 
-		len = sizeof(npages);
-		if (sysctlbyname("vm.stats.vm.v_page_count", &npages, &len, NULL, 0) == -1
+		len_pg = sizeof(npages);
+		if (sysctlbyname("vm.stats.vm.v_page_count", &npages, &len_pg, NULL, 0) == -1
 				|| !len)
 			return NULL;
 
-		if (sysctlbyname("vm.stats.vm.v_active_count", &active, &len, NULL, 0) == -1
+		len_pg = sizeof(active);
+		if (sysctlbyname("vm.stats.vm.v_active_count", &active, &len_act, NULL, 0) == -1
 				|| !len)
 			return NULL;
 
@@ -209,7 +210,7 @@
 
 	const char *
 	ram_used(void) {
-		long active;
+		unsigned int active;
 		size_t len;
 
 		len = sizeof(active);
