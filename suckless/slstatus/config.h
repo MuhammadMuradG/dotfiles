@@ -90,5 +90,5 @@ static const struct arg args[] = {
 	{ keymap,           "%s",              NULL },
 	{ separator,        SEPARATOR,         NULL },
 
-	{ datetime,         "%s",              "%a,%b %d %R" },
+	{ datetime,         "%s",              "%d,%b %a %I:%M %p" },
 };
