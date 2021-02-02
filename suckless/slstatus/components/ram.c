@@ -197,12 +197,12 @@
 
 		len_pg = sizeof(npages);
 		if (sysctlbyname("vm.stats.vm.v_page_count", &npages, &len_pg, NULL, 0) == -1
-				|| !len)
+				|| !len_pg)
 			return NULL;
 
 		len_pg = sizeof(active);
 		if (sysctlbyname("vm.stats.vm.v_active_count", &active, &len_act, NULL, 0) == -1
-				|| !len)
+				|| !len_act)
 			return NULL;
 
 		return bprintf("%d", active * 100 / npages);
