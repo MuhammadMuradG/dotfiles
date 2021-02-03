@@ -178,7 +178,7 @@
 
 	const char *
 	ram_total(void) {
-		unsigned int npages;
+		int npages;
 		size_t len;
 
 		len = sizeof(npages);
@@ -191,8 +191,8 @@
 
 	const char *
 	ram_perc(void) {
-		unsigned int npages;
-		unsigned int active;
+		int npages;
+		int active;
 		size_t len_pg, len_act;
 
 		len_pg = sizeof(npages);
@@ -210,7 +210,7 @@
 
 	const char *
 	ram_used(void) {
-		unsigned int active;
+		int active;
 		size_t len;
 
 		len = sizeof(active);
