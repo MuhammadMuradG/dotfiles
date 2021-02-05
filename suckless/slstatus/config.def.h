@@ -68,27 +68,27 @@ static const char* const SEPARATOR = "|";
 static const struct arg args[] = {
 	/* function format          argument */
 	{ separator,        SEPARATOR,         NULL },
-	{ battery_perc,     " %s%%",          NULL },
+	{ battery_perc,     " %s%%",          NULL },
 	{ separator,        SEPARATOR,         NULL },
 
-	{ ram_perc,         " %s%%",          NULL },
+	{ ram_perc,         " %s%%",          NULL },
 	{ separator,        SEPARATOR,         NULL },
 
 	{ cpu_perc,         " %s%%",          NULL },
 	{ separator,        SEPARATOR,         NULL },
 
 	{ netspeed_rx,      "%s",             "wlan0" },
-	{ netspeed_tx,      "%s",             "wlan0" }, 
+	{ netspeed_tx,      " %s",             "wlan0" }, 
     { separator,        SEPARATOR,         NULL },
 
-	{ wifi_perc,        " %s%%",          "wlan0" },
+	{ wifi_perc,        "  %s%%",          "wlan0" },
 	{ separator,        SEPARATOR,         NULL },
 
 	{ vol_perc,         " %s%%",          "/dev/mixer" },
 	{ separator,        SEPARATOR,         NULL },
 
-	{ keymap,           "%s",              NULL },
+	{ keymap,           " %s",              NULL },
 	{ separator,        SEPARATOR,         NULL },
 
-	{ datetime,         "%s",              "%d,%b %a %I:%M %p" },
+	{ datetime,         " %s",              "%d,%b %a %I:%M %p" },
 };
