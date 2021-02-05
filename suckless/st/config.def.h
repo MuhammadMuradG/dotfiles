@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Inconsolata::pixelsize=12:lcdfilter=lcddefault:hintstyle=hintnone:rgba=rgb:antialias=true:autohint=true";
+static char *font = "UbuntuMono Nerd Font::pixelsize=13";
 static int borderpx = 2;
 
 /*
