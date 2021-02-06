@@ -81,7 +81,7 @@ static const struct arg args[] = {
 	{ netspeed_tx,      "%s",             "wlan0" }, 
     { separator,        SEPARATOR,         NULL },
 
-	{ wifi_perc,        "  %s%%",          "wlan0" },
+	{ wifi_perc,        " %s%%",          "wlan0" },
 	{ separator,        SEPARATOR,         NULL },
 
 	{ vol_perc,         " %s%%",          "/dev/mixer" },
@@ -92,5 +92,5 @@ static const struct arg args[] = {
 
 	{ datetime,         " %s",            "%d,%b %a" },
 	{ separator,        SEPARATOR,         NULL },
-	{ datetime,         " %s",            "%I:%M %p" },
+	{ datetime,         " %s",            "%I:%M%p" },
 };
