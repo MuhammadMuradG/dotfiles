@@ -57,6 +57,12 @@ static double minlatency = 8;
 static double maxlatency = 33;
 
 /*
+ * Synchronized-Update timeout in ms
+ * https://gitlab.com/gnachman/iterm2/-/wikis/synchronized-updates-spec
+ */
+static unsigned int su_timeout = 200;
+
+/*
  * blinking timeout (set to 0 to disable blinking) for the terminal blinking
  * attribute.
  */
@@ -100,10 +106,10 @@ float alpha = 0.8, alphaUnfocused = 0.6;
 static const char *colorname[] = {
 	/* 8 normal colors */
 	[0] = "#282828", /* hard contrast: #1d2021 / soft contrast: #32302f */
-  	[1] = "#cc241d", /* red     */
-  	[2] = "#98971a", /* green   */
-  	[3] = "#d79921", /* yellow  */
-  	[4] = "#458588", /* blue    */
+	[1] = "#cc241d", /* red     */
+	[2] = "#98971a", /* green   */
+	[3] = "#d79921", /* yellow  */
+	[4] = "#458588", /* blue    */
 	[5] = "#b16286", /* magenta */
 	[6] = "#689d6a", /* cyan    */
 	[7] = "#a89984", /* white   */
