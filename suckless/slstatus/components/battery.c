@@ -200,7 +200,7 @@
 	#include <sys/sysctl.h>
 
 	const char *
-	battery_perc(const char *unused)
+	battery_perc(void)
 	{
 		int cap;
 		size_t len;
@@ -214,7 +214,7 @@
 	}
 
 	const char *
-	battery_state(const char *unused)
+	battery_state(void)
 	{
 		int state;
 		size_t len;
@@ -236,7 +236,7 @@
 	}
 
 	const char *
-	battery_remaining(const char *unused)
+	battery_remaining(void)
 	{
 		int rem;
 		size_t len;

@@ -178,7 +178,7 @@
 
 	const char *
 	ram_total(void) {
-		int npages;
+		unsigned int npages;
 		size_t len;
 
 		len = sizeof(npages);
@@ -191,33 +191,46 @@
 
 	const char *
 	ram_perc(void) {
-		int npages;
-		int active;
-		size_t len_pg, len_act;
+		unsigned int npages, active, kernel, total_used;
+		size_t len_pg, len_act, len_kern;
 
 		len_pg = sizeof(npages);
 		if (sysctlbyname("vm.stats.vm.v_page_count", &npages, &len_pg, NULL, 0) == -1
 				|| !len_pg)
 			return NULL;
 
-		len_pg = sizeof(active);
+		len_act = sizeof(active);
 		if (sysctlbyname("vm.stats.vm.v_active_count", &active, &len_act, NULL, 0) == -1
 				|| !len_act)
 			return NULL;
 
-		return bprintf("%d", active * 100 / npages);
+		len_kern = sizeof(kernel);
+		if (sysctlbyname("vm.stats.vm.v_wire_count", &kernel, &len_kern, NULL, 0) == -1
+				|| !len_kern)
+			return NULL;
+
+		total_used = active + kernel;
+
+		return bprintf("%d", total_used * 100 / npages);
 	}
 
 	const char *
 	ram_used(void) {
-		int active;
-		size_t len;
+		unsigned int active, kernel, total_used;
+		size_t len_act, len_kern;
 
-		len = sizeof(active);
-		if (sysctlbyname("vm.stats.vm.v_active_count", &active, &len, NULL, 0) == -1
-				|| !len)
+		len_act = sizeof(active);
+		if (sysctlbyname("vm.stats.vm.v_active_count", &active, &len_act, NULL, 0) == -1
+				|| !len_act)
 			return NULL;
 
-		return fmt_human(active * getpagesize(), 1024);
+		len_kern = sizeof(kernel);
+		if (sysctlbyname("vm.stats.vm.v_wire_count", &kernel, &len_kern, NULL, 0) == -1
+				|| !len_kern)
+			return NULL;
+
+		total_used = active + kernel;
+
+		return fmt_human(total_used * getpagesize(), 1024);
 	}
 #endif
