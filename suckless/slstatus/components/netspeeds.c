@@ -73,7 +73,7 @@
 		uintmax_t oldrxbytes;
 		static uintmax_t rxbytes;
 		extern const unsigned int interval;
-		int if_ok = 0;
+		int if_ok;
 
 		oldrxbytes = rxbytes;
 
@@ -91,7 +91,7 @@
 		}
 		freeifaddrs(ifal);
 		if (!if_ok) {
-			warn("reading 'if_data' failed");
+			warn("reading 'if_data' or 'interface' failed");
 			return NULL;
 		}
 		if (oldrxbytes == 0) {
@@ -110,7 +110,7 @@
 		uintmax_t oldtxbytes;
 		static uintmax_t txbytes;
 		extern const unsigned int interval;
-		int if_ok = 0;
+		int if_ok;
 
 		oldtxbytes = txbytes;
 
@@ -128,7 +128,7 @@
 		}
 		freeifaddrs(ifal);
 		if (!if_ok) {
-			warn("reading 'if_data' failed");
+			warn("reading 'if_data' or 'interface' failed");
 			return NULL;
 		}
 		if (oldtxbytes == 0) {
