@@ -83,6 +83,7 @@
 		}
 		rxbytes = 0;
 		for (ifa = ifal; ifa != NULL; ifa = ifa->ifa_next) {
+			if_ok = 0;
 			if (!strcmp(ifa->ifa_name, interface) &&
 					(ifd = (struct if_data *)ifa->ifa_data)) {
 				rxbytes = ifd->ifi_ibytes, if_ok = 1;
@@ -119,6 +120,7 @@
 		}
 		txbytes = 0;
 		for (ifa = ifal; ifa != NULL; ifa = ifa->ifa_next) {
+			if_ok = 0;
 			if (!strcmp(ifa->ifa_name, interface) &&
 					(ifd = (struct if_data *)ifa->ifa_data)) {
 				txbytes = ifd->ifi_obytes, if_ok = 1;
