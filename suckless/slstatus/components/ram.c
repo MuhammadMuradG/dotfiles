@@ -191,45 +191,62 @@
 
 	const char *
 	ram_perc(void) {
-		unsigned int npages, active, kernel, total_used;
-		size_t len_pg, len_act, len_kern;
+		unsigned int npages, inactive, free, cache, total_free, total_used;
+		size_t len_pg, len_inact, len_cache, len_free;
 
 		len_pg = sizeof(npages);
 		if (sysctlbyname("vm.stats.vm.v_page_count", &npages, &len_pg, NULL, 0) == -1
 				|| !len_pg)
 			return NULL;
 
-		len_act = sizeof(active);
-		if (sysctlbyname("vm.stats.vm.v_active_count", &active, &len_act, NULL, 0) == -1
-				|| !len_act)
+		len_free = sizeof(free);
+		if (sysctlbyname("vm.stats.vm.v_free_count", &free, &len_free, NULL, 0) == -1
+				|| !len_free)
 			return NULL;
 
-		len_kern = sizeof(kernel);
-		if (sysctlbyname("vm.stats.vm.v_wire_count", &kernel, &len_kern, NULL, 0) == -1
-				|| !len_kern)
+		len_inact = sizeof(inactive);
+		if (sysctlbyname("vm.stats.vm.v_inactive_count", &inactive, &len_inact, NULL, 0) == -1
+				|| !len_inact)
 			return NULL;
 
-		total_used = active + kernel;
+		len_cache = sizeof(cache);
+		if (sysctlbyname("vm.stats.vm.v_cache_count", &cache, &len_cache, NULL, 0) == -1
+				|| !len_cache)
+			return NULL;
+
+		total_free = free + inactive + cache;
+		total_used = npages - total_free;
 
 		return bprintf("%d", total_used * 100 / npages);
 	}
 
 	const char *
 	ram_used(void) {
-		unsigned int active, kernel, total_used;
-		size_t len_act, len_kern;
+		unsigned int npages, inactive, free, cache, total_free, total_used;
+		size_t len_pg, len_inact, len_cache, len_free;
 
-		len_act = sizeof(active);
-		if (sysctlbyname("vm.stats.vm.v_active_count", &active, &len_act, NULL, 0) == -1
-				|| !len_act)
+		len_pg = sizeof(npages);
+		if (sysctlbyname("vm.stats.vm.v_page_count", &npages, &len_pg, NULL, 0) == -1
+				|| !len_pg)
 			return NULL;
 
-		len_kern = sizeof(kernel);
-		if (sysctlbyname("vm.stats.vm.v_wire_count", &kernel, &len_kern, NULL, 0) == -1
-				|| !len_kern)
+		len_free = sizeof(free);
+		if (sysctlbyname("vm.stats.vm.v_free_count", &free, &len_free, NULL, 0) == -1
+				|| !len_free)
 			return NULL;
 
-		total_used = active + kernel;
+		len_inact = sizeof(inactive);
+		if (sysctlbyname("vm.stats.vm.v_inactive_count", &inactive, &len_inact, NULL, 0) == -1
+				|| !len_inact)
+			return NULL;
+
+		len_cache = sizeof(cache);
+		if (sysctlbyname("vm.stats.vm.v_cache_count", &cache, &len_cache, NULL, 0) == -1
+				|| !len_cache)
+			return NULL;
+
+		total_free = free + inactive + cache;
+		total_used = npages - total_free;
 
 		return fmt_human(total_used * getpagesize(), 1024);
 	}
