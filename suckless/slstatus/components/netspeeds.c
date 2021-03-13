@@ -73,7 +73,7 @@
 		uintmax_t oldrxbytes;
 		static uintmax_t rxbytes;
 		extern const unsigned int interval;
-		int if_ok;
+		int if_ok = 0;
 
 		oldrxbytes = rxbytes;
 
@@ -83,7 +83,6 @@
 		}
 		rxbytes = 0;
 		for (ifa = ifal; ifa != NULL; ifa = ifa->ifa_next) {
-			if_ok = 0;
 			if (!strcmp(ifa->ifa_name, interface) &&
 					(ifd = (struct if_data *)ifa->ifa_data)) {
 				rxbytes = ifd->ifi_ibytes, if_ok = 1;
@@ -110,7 +109,7 @@
 		uintmax_t oldtxbytes;
 		static uintmax_t txbytes;
 		extern const unsigned int interval;
-		int if_ok;
+		int if_ok = 0;
 
 		oldtxbytes = txbytes;
 
@@ -120,7 +119,6 @@
 		}
 		txbytes = 0;
 		for (ifa = ifal; ifa != NULL; ifa = ifa->ifa_next) {
-			if_ok = 0;
 			if (!strcmp(ifa->ifa_name, interface) &&
 					(ifd = (struct if_data *)ifa->ifa_data)) {
 				txbytes = ifd->ifi_obytes, if_ok = 1;
