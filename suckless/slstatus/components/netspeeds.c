@@ -60,10 +60,10 @@
 	}
 #elif defined(__OpenBSD__) | defined(__FreeBSD__)
 	#include <string.h>
+	#include <net/if.h>
 	#include <ifaddrs.h>
 	#include <sys/types.h>
-	#include <sys/socket.h>
-	#include <net/if.h>
+	#include <sys/socket.h>	
 
 	const char *
 	netspeed_rx(const char *interface)
