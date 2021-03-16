@@ -121,7 +121,7 @@
 		for (ifa = ifal; ifa != NULL; ifa = ifa->ifa_next) {
 			if (!strcmp(ifa->ifa_name, interface) &&
 					(ifd = (struct if_data *)ifa->ifa_data)) {
-				txbytes = ifd->ifi_obytes, if_ok = 1;
+				txbytes += ifd->ifi_obytes, if_ok = 1;
 			}
 		}
 		freeifaddrs(ifal);
