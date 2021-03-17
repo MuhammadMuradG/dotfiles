@@ -63,7 +63,8 @@
 	#include <net/if.h>
 	#include <ifaddrs.h>
 	#include <sys/types.h>
-	#include <sys/socket.h>	
+	#include <sys/socket.h>
+	#include <netinet/in.h>
 
 	const char *
 	netspeed_rx(const char *interface)
@@ -77,6 +78,8 @@
 
 		oldrxbytes = rxbytes;
 
+		// there's an entry in ifal list for every protocol family attached to
+		// each ifnet; they are not duplicates.
 		if (getifaddrs(&ifal) == -1) {
 			warn("getifaddrs failed");
 			return NULL;
@@ -84,7 +87,8 @@
 		rxbytes = 0;
 		for (ifa = ifal; ifa != NULL; ifa = ifa->ifa_next) {
 			if (!strcmp(ifa->ifa_name, interface) &&
-					(ifd = (struct if_data *)ifa->ifa_data)) {
+					(ifa->ifa_addr->sa_family == AF_LINK) &&
+					(ifd = ifa->ifa_data)) {
 				rxbytes = ifd->ifi_ibytes, if_ok = 1;
 			}
 		}
@@ -113,6 +117,8 @@
 
 		oldtxbytes = txbytes;
 
+		// there's an entry in ifal list for every protocol family attached to
+		// each ifnet; they are not duplicates.
 		if (getifaddrs(&ifal) == -1) {
 			warn("getifaddrs failed");
 			return NULL;
@@ -120,8 +126,9 @@
 		txbytes = 0;
 		for (ifa = ifal; ifa != NULL; ifa = ifa->ifa_next) {
 			if (!strcmp(ifa->ifa_name, interface) &&
-					(ifd = (struct if_data *)ifa->ifa_data)) {
-				txbytes += ifd->ifi_obytes, if_ok = 1;
+					(ifa->ifa_addr->sa_family == AF_LINK) &&
+					(ifd = ifa->ifa_data)) {
+				txbytes = ifd->ifi_obytes, if_ok = 1;
 			}
 		}
 		freeifaddrs(ifal);
