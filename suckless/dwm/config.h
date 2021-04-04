@@ -65,15 +65,18 @@ static const char *volumeupcmd[]    = { "mixer", "vol", "+5", NULL };
 static const char *volumedowncmd[]  = { "mixer", "vol", "-5", NULL };
 
 static Key keys[] = {
-	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
-	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+
+	/* modifier                     key        function        custom argument */
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = browser } },
 	{ MODKEY,                       XK_l,      spawn,          {.v = lockcmd } },
 	{ MODKEY,                       XK_F11,    spawn,          {.v = volumemutecmd } },
 	{ MODKEY,                       XK_F9,     spawn,          {.v = volumedowncmd } },
 	{ MODKEY,                       XK_F10,    spawn,          {.v = volumeupcmd } },
 	{ MODKEY,                       XK_F1,     spawn,          SHCMD("setxkbmap -query | grep -q 'us' && setxkbmap ara || setxkbmap us") },
+
+	/* modifier                     key        function        argument */
+	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
