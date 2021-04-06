@@ -67,6 +67,7 @@ static const char* const SEPARATOR = "  ";
  */
 static const struct arg args[] = {
 	/* function          format          argument */
+    { separator,        "│",               NULL },
 	{ netspeed_rx,      "%s",             "wlan0" },
 	{ netspeed_tx,      "%s",             "wlan0" }, 
     { separator,        SEPARATOR,         NULL },
