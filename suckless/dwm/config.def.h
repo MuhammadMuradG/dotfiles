@@ -29,7 +29,6 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       0,            1,           -1 },
-	{ "Evince",   NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -61,6 +60,7 @@ static const char *dmenucmd[]       = { "dmenu_run", "-m", dmenumon, "-fn", dmen
 static const char *termcmd[]        = { "st", NULL };
 static const char *browser[]        = { "firefox", "-p", NULL };
 static const char *lockcmd[]        = { "slock", NULL };
+static const char *pdfviewer[]      = { "evince", NULL };
 static const char *volumemutecmd[]  = { "mixer", "vol", "0", NULL };
 static const char *volumeupcmd[]    = { "mixer", "vol", "+5", NULL };
 static const char *volumedowncmd[]  = { "mixer", "vol", "-5", NULL };
@@ -70,6 +70,7 @@ static Key keys[] = {
 	/* modifier                     key        function        custom argument */
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = browser } },
 	{ MODKEY|ShiftMask,             XK_s,      spawn,          {.v = lockcmd } },
+	{ MODKEY|ShiftMask,             XK_v,      spawn,          {.v = pdfviewer } },
 	{ MODKEY,                       XK_F11,    spawn,          {.v = volumemutecmd } },
 	{ MODKEY,                       XK_F9,     spawn,          {.v = volumedowncmd } },
 	{ MODKEY,                       XK_F10,    spawn,          {.v = volumeupcmd } },
