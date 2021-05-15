@@ -62,15 +62,15 @@ bindkey "^[[4~" end-of-line
 
 # Highlight selection
 # Colorize completions using default `ls` colors.
-zstyle ':completion:*' list-colors ''
+zstyle ':completion:*:options' list-colors '=^(-- *)=34'
+zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=34=31=33'
+
+# For colorized ls output
+#export CLICOLOR=1
 
 # Enable keyboard navigation of completions in menu
 # (not just tab/shift-tab but cursor keys as well):
 zstyle ':completion:*' menu select
-
-# persistent reshahing i.e puts new executables in the $path
-# if no command is set typing in a line will cd by default
-zstyle ':completion:*' rehash true
 
 # Allow completion of ..<Tab> to ../ and beyond.
 zstyle -e ':completion:*' special-dirs '[[ $PREFIX = (../)#(..) ]] && reply=(..)'
@@ -78,10 +78,10 @@ zstyle -e ':completion:*' special-dirs '[[ $PREFIX = (../)#(..) ]] && reply=(..)
 # Categorize completion suggestions with headings:
 zstyle ':completion:*' group-name ''
 # Style the group names
-zstyle ':completion:*' format %F{yellow}%B%U%{$__DOTS[ITALIC_ON]%}%d%{$__DOTS[ITALIC_OFF]%}%b%u%f
+zstyle ':completion:*' format %F{blue}%B%U%{$__DOTS[ITALIC_ON]%}%d%{$__DOTS[ITALIC_OFF]%}%b%u%f
 
 # My aliases. '-g': for global, allow using anywhere in the commands.
-alias -g full-upgrade='sudo freebsd-update upgrade; sudo freebsd-update fetch; sudo freebsd-update install; sudo pkg update; sudo pkg upgrade -y'
+alias -g full-update='sudo freebsd-update fetch; sudo freebsd-update install; sudo pkg update; sudo pkg upgrade -y; sudo pkg autoremove -y; sudo pkg clean -y'
 
 # Load my theme
 source ~/.zsh-theme
