@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "RobotoMono Nerd Font Mono:pixelsize=9:antialias=true:autohint=true";
+static char *font = "RobotoMono Nerd Font Mono:pixelsize=10:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
