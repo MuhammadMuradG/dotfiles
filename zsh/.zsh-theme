@@ -72,9 +72,9 @@ function prompt-length() {
 }
 
 function set-prompt() {
-	local top_left="$(set_color)╭$(env_prompt_info)$(chyph)$(directory)"
+	local top_left=" $(set_color)╭$(env_prompt_info)$(chyph)$(directory)"
 	local top_right="$(git_prompt_info)$(user_host_prompt_info)$(set_color)─╮$(reset)"
-	local bottom_left="$(set_color)╰─>$(reset) "
+	local bottom_left=" $(set_color)╰─>$(reset) "
 	local bottom_right="$(chyph)$(chyph)$(current_time)$(set_color)─╯$(reset)"
 
 	PROMPT=$'\n'"$(fill-line "$top_left" "$top_right")"$'\n'$bottom_left
