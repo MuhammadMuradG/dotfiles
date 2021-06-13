@@ -60,6 +60,12 @@ bindkey "^[[3~" delete-char
 bindkey "^[[H"  beginning-of-line
 bindkey "^[[4~" end-of-line
 
+# Exclude failed commands from history file; This function is executed before
+# the command line is written to history. If it does return 1, the current
+# command line is neither appended to the history file nor to the
+# local history stack.
+zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
+
 # Highlight selection
 # Colorize completions using default `ls` colors.
 zstyle ':completion:*:options' list-colors '=^(-- *)=34'
