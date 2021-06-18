@@ -75,6 +75,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_F9,     spawn,          {.v = volumedowncmd } },
 	{ MODKEY,                       XK_F10,    spawn,          {.v = volumeupcmd } },
 	{ MODKEY,                       XK_F1,     spawn,          SHCMD("setxkbmap -query | grep -q 'us' && setxkbmap ara || setxkbmap us") },
+	{ MODKEY,                       XK_F2,     spawn,          SHCMD("xrandr --output LVDS-1 --gamma 1.000000:0.790418:0.567936 --brightness 0.9") },
+	{ MODKEY,                       XK_F3,     spawn,          SHCMD("xrandr --output LVDS-1 --gamma 1:1:1 --brightness 1") },
 
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
