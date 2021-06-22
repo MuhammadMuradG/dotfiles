@@ -22,11 +22,12 @@ COMPATSRC = explicit_bzero.c
 
 # On OpenBSD and Darwin remove -lcrypt from LIBS
 #LIBS = -L/usr/lib -lc -L${X11LIB} -lX11 -lXext -lXrandr
-# On *BSD remove -DHAVE_SHADOW_H from CPPFLAGS
+# On *BSD remove -DHAVE_SHADOW_H and add -D_BSD_SOURCE to CPPFLAGS
+CPPFLAGS = -DVERSION=\"${VERSION}\" -D_BSD_SOURCE
 # On NetBSD add -D_NETBSD_SOURCE to CPPFLAGS
 #CPPFLAGS = -DVERSION=\"${VERSION}\" -D_BSD_SOURCE -D_NETBSD_SOURCE
-# On OpenBSD set COMPATSRC to empty
-#COMPATSRC =
+# On OpenBSD and FreeBSD set COMPATSRC to empty
+COMPATSRC =
 
 # compiler and linker
 CC = cc
