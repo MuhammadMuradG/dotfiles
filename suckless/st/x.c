@@ -1520,7 +1520,7 @@ xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, i
 					.x = wx + win.cw * i + ww / 4,
 					.y = wy,
 					.width = win.cw / 2,
-					.height = wh,
+					.height = wh/2,
 					.angle1 = 0,
 					.angle2 = 180 * 64
 				};
@@ -1528,7 +1528,7 @@ xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, i
 					.x = wx + win.cw * i + ww * 0.75,
 					.y = wy,
 					.width = win.cw/2,
-					.height = wh,
+					.height = wh/2,
 					.angle1 = 180 * 64,
 					.angle2 = 180 * 64
 				};
