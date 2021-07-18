@@ -47,6 +47,15 @@ current_time() {
 	echo "$(inbracket "%T")"
 }
 
+function last_command_status() {
+	local LAST_EXIT_CODE=$?
+	if [[ "$LAST_EXIT_CODE" = "0" ]]; then
+		echo "%F{046}✔ $(reset)"
+	else
+		echo "$(inbracket "exit status::%F{196}$LAST_EXIT_CODE$(reset)")"
+	fi
+}
+
 function fill-line() {
 	local left_len=$(prompt-length $1)
 	local right_len=$(prompt-length $2)
@@ -75,7 +84,7 @@ function set-prompt() {
 	local top_left=" $(set_color)╭$(env_prompt_info)$(chyph)$(directory)"
 	local top_right="$(git_prompt_info)$(user_host_prompt_info)$(set_color)─╮$(reset)"
 	local bottom_left=" $(set_color)╰─>$(reset) "
-	local bottom_right="$(chyph)$(chyph)$(current_time)$(set_color)─╯$(reset)"
+	local bottom_right='$(last_command_status)'"$(chyph)$(chyph)$(current_time)$(set_color)─╯$(reset)"
 
 	PROMPT=$'\n'"$(fill-line "$top_left" "$top_right")"$'\n'$bottom_left
 	RPROMPT=$bottom_right
