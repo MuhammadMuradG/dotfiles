@@ -1527,22 +1527,19 @@ xdrawglyphfontspecs(const XftGlyphFontSpec *specs, Glyph base, int len, int x, i
 				arcs[i*2+1] = (XArc) {
 					.x = wx + win.cw * i + ww * 0.75,
 					.y = wy,
-					.width = win.cw/2,
+					.width = win.cw / 2,
 					.height = wh - 1,
 					.angle1 = 180 * 64,
 					.angle2 = 180 * 64
 				};
 			}
 			// Last wave
-			arcs[i*2] = (XArc) {wx + ww * i + ww / 4, wy, ww / 2, wh - 1,
-			0, 180 * 64 };
+			arcs[i*2] = (XArc) {wx + ww * i + ww / 4, wy, ww / 2, wh - 1, 0, 180 * 64 };
 			// Last wave tail
-			arcs[i*2+1] = (XArc) {wx + ww * i + ww * 0.75, wy, ceil(ww / 2.),
-			wh - 1, 180 * 64, 90 * 64};
+			arcs[i*2+1] = (XArc) {wx + ww * i + ww * 0.75, wy, ceil(ww / 2.), wh - 1, 180 * 64, 90 * 64};
 			// First wave tail
 			i++;
-			arcs[i*2] = (XArc) {wx - ww/4 - 1, wy, ceil(ww / 2.), wh - 1, 270 * 64,
-			90 * 64 };
+			arcs[i*2] = (XArc) {wx - ww/4 - 1, wy, ceil(ww / 2.), wh - 1, 270 * 64, 90 * 64 };
 
 			XDrawArcs(xw.dpy, XftDrawDrawable(xw.draw), ugc, arcs, narcs);
 
