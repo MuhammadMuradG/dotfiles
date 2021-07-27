@@ -1,8 +1,8 @@
-#!/usr/local/bin/zsh
+#!/bin/sh
 
-choice=$(echo "Shutdown\nReboot\nLogout\nExit" | dmenu -i -p "Choose action: ")
+CHOICE=`echo "Shutdown\nRestart\nLogout\nExit" | dmenu -i -p "Choose action: "`
 
-[ $choice = "Shutdown" ] && st sudo poweroff
-[ $choice = "Reboot"   ] && st sudo reboot
-[ $choice = "Logout"   ] && slock
-[ $choice = "Exit"     ] && pkill dwm
+[ $CHOICE = "Shutdown" ] && `st sudo shutdown -p now`
+[ $CHOICE = "Restart"  ] && `st sudo shutdown -r now`
+[ $CHOICE = "Logout"   ] && `slock`
+[ $CHOICE = "Exit"     ] && `st sudo pkill dwm`
