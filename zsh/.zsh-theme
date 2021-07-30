@@ -2,7 +2,7 @@
 # useful unicode chars: ━┏┗ ┓┛  ─╭╰ ╮╯
 # use to search unicode chars: https://shapecatcher.com/
 
-set_color() {
+function set_color() {
 	# custom colors for different hosts.
 	# use "spectrum_ls" to see available colors.
 	# default is 066
@@ -13,37 +13,37 @@ set_color() {
 # %F (%f) Start (stop) using a different foreground colour,
 # %K (%k) Start (stop) using a different bacKground colour and
 # %B (%b) Start (stop) boldface mode.
-reset() {
+function reset() {
 	echo "%f%k%b"
 }
 
-chyph() {
+function chyph() {
     echo "$(set_color)─$(reset)"
 }
 
-inbracket() {
+function inbracket() {
 	echo "$(set_color)[$(reset)$1$(set_color)]$(reset)"
 }
 
-inbox() {
+function inbox() {
 	echo "$(set_color)┫$(reset)$1$(set_color)┣$(reset)"
 }
 
-user_host_prompt_info() {
+function user_host_prompt_info() {
     echo "$(inbracket %n%{$fg[red]%}@%F{075}%M)"
 }
 
-env_prompt_info() {
+function env_prompt_info() {
 	if [ ! -z "${VIRTUAL_ENV}" ]; then
 		echo "$(inbracket "%F{213}venv::`basename \"$VIRTUAL_ENV\"`")"
 	fi
 }
 
-directory() {
+function directory() {
 	echo "$(inbracket "%F{046}%(4~|.../%3~|%~)")"
 }
 
-current_time() {
+function current_time() {
 	echo "$(inbracket "%T")"
 }
 
@@ -52,7 +52,7 @@ function last_command_status() {
 	if [[ "$LAST_EXIT_CODE" = "0" ]]; then
 		echo "%F{046}✔ $(reset)"
 	else
-		echo "$(inbracket "exit status::%F{196}$LAST_EXIT_CODE$(reset)")"
+		echo "$(inbracket "%F{196}ExitCode::$LAST_EXIT_CODE$(reset)")"
 	fi
 }
 
@@ -86,7 +86,7 @@ function set-prompt() {
 	local bottom_left=" $(set_color)╰─>$(reset) "
 	local bottom_right='$(last_command_status)'"$(chyph)$(chyph)$(current_time)$(set_color)─╯$(reset)"
 
-	PROMPT=$'\n'"$(fill-line "$top_left" "$top_right")"$'\n'$bottom_left
+	PROMPT=$'\n'$(fill-line "$top_left" "$top_right")$'\n'$bottom_left
 	RPROMPT=$bottom_right
 }
 
