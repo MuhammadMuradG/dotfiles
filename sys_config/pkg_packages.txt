@@ -28,6 +28,8 @@ texlive-full
 tigervnc-viewer
 unrar
 vm-bhyve
+grub2-bhyve
+uefi-edk2-bhyve
 wget
 xclip
 xorg-minimal
