@@ -58,7 +58,7 @@ setopt prompt_subst         # Reevaluate the prompt each displaying time
 # Bind keys
 bindkey "^[[3~" delete-char
 bindkey "^[[H"  beginning-of-line
-bindkey "^[[4~" end-of-line
+bindkey "^[[F" end-of-line
 bindkey '\e[A' history-beginning-search-backward
 bindkey '\e[B' history-beginning-search-forward
 
