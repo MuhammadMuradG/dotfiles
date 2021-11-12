@@ -59,8 +59,8 @@ setopt prompt_subst         # Reevaluate the prompt each displaying time
 bindkey "^[[3~" delete-char
 bindkey "^[[H"  beginning-of-line
 bindkey "^[[4~" end-of-line
-bindkey '\e[A' history-beginning-search-backward
-bindkey '\e[B' history-beginning-search-forward
+bindkey '\e[A' history-search-backward
+bindkey '\e[B' history-search-forward
 
 # Exclude failed commands from history file; This function is executed before
 # the command line is written to history. If it does return 1, the current
