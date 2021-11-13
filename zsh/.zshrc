@@ -68,13 +68,8 @@ bindkey '\e[B' history-beginning-search-forward
 # local history stack.
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 
-# Highlight selection
-# Colorize completions using default `ls` colors.
-zstyle ':completion:*:options' list-colors '=^(-- *)=34'
-zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=34=31=33'
-
 # For colorized ls output
-#export CLICOLOR=1
+export CLICOLOR=1
 
 # Enable keyboard navigation of completions in menu
 # (not just tab/shift-tab but cursor keys as well):
@@ -83,10 +78,19 @@ zstyle ':completion:*' menu select
 # Allow completion of ..<Tab> to ../ and beyond.
 zstyle -e ':completion:*' special-dirs '[[ $PREFIX = (../)#(..) ]] && reply=(..)'
 
-# Categorize completion suggestions with headings:
+# Categorize completion suggestions with headings
 zstyle ':completion:*' group-name ''
 # Style the group names
 zstyle ':completion:*' format %F{blue}%B%U%{$__DOTS[ITALIC_ON]%}%d%{$__DOTS[ITALIC_OFF]%}%b%u%f
+
+# Colored completion (different colors for dirs/files/etc)
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+# Colored command options
+zstyle ':completion:*:options' list-colors '=^(-- *)=34'
+
+# Colored process from kill output
+zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=34=31=33'
 
 # My aliases. '-g': for global, allow using anywhere in the commands.
 alias -g full-update='sudo freebsd-update fetch; sudo freebsd-update install; sudo pkg update; sudo pkg upgrade -y; sudo pkg autoremove -y; sudo pkg clean -y'
