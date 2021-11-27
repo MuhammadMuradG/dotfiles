@@ -47,8 +47,10 @@ compinit
 # -----------------------------------------------------------------------------
 # Customs Configuration
 # -----------------------------------------------------------------------------
-# Set system locale
-export LANG=en_US.UTF-8
+# Set environment variables
+export LANG=en_US.UTF-8   # system locale
+export EDITOR=nvim        # editor
+export PAGER=less         # pager
 
 # Set additional options
 setopt INC_APPEND_HISTORY   # Commands are added to the history immediately
