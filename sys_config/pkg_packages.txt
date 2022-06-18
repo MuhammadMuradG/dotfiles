@@ -1,4 +1,9 @@
+# Depending on your gpu card:
 drm-kmod
+gpu-firmware-radeon-kmod-turks-20220511
+gpu-firmware-radeon-kmod-btc-20220511
+
+# Minimum and important apps for me:
 evince-lite
 firefox-esr
 fusefs-jmtpfs
