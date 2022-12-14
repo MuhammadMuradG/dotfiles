@@ -50,7 +50,7 @@ compinit
 # Set environment variables
 export LANG=en_US.UTF-8   # system locale
 export EDITOR=nvim        # editor
-export PAGER=less         # pager
+export PAGER=less      # zathura or less
 
 # Set additional options
 setopt INC_APPEND_HISTORY   # Commands are added to the history immediately
@@ -60,7 +60,9 @@ setopt prompt_subst         # Reevaluate the prompt each displaying time
 # Bind keys
 bindkey "^[[3~" delete-char
 bindkey "^[[H"  beginning-of-line
+bindkey '^[[7~' beginning-of-line
 bindkey "^[[F" end-of-line
+bindkey '^[[8~' end-of-line
 bindkey '\e[A' history-beginning-search-backward
 bindkey '\e[B' history-beginning-search-forward
 
@@ -95,7 +97,7 @@ zstyle ':completion:*:options' list-colors '=^(-- *)=34'
 zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=34=31=33'
 
 # My aliases. '-g': for global, allow using anywhere in the commands.
-alias -g full-update='sudo freebsd-update fetch; sudo freebsd-update install; sudo pkg update; sudo pkg upgrade -y; sudo pkg autoremove -y; sudo pkg clean -y'
+alias -g full-update='sudo freebsd-update fetch; sudo freebsd-update install; sudo pkg update; sudo pkg upgrade -y; sudo pkg autoremove -y; sudo pkg clean -ay'
 
 # Load my theme
 source ~/.zsh-theme
