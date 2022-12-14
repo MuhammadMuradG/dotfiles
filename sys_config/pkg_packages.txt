@@ -1,11 +1,10 @@
-# Depending on your gpu card:
+# Depending on your gpu card, however, the following is a meta-port package
+# that will detect suitable package for your driver:
 drm-kmod
-gpu-firmware-radeon-kmod-turks-20220511
-gpu-firmware-radeon-kmod-btc-20220511
 
 # Minimum and important apps for me:
 evince-lite
-firefox-esr
+firefox
 fusefs-jmtpfs
 fusefs-ntfs
 fusefs-ntfs-compression
@@ -22,10 +21,8 @@ npm
 p7zip
 pkg
 pkgconf
-py38-black
-py38-pip
-py37-pynvim
-py38-virtualenv
+py39-pynvim
+py39.virtualenv
 scrot
 setxkbmap
 sudo
