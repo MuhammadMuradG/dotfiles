@@ -140,6 +140,8 @@ static const char *colorname[] = {
 	// more colors can be added after 255 to use with defaultxx
 	[256] = "#cccccc",
 	[257] = "#555555",
+	[258] = "gray90", /* default foreground colour */
+	[259] = "black", /* default background colour */
 };
 
 
@@ -149,8 +151,8 @@ static const char *colorname[] = {
  */
 unsigned int defaultfg = 15;
 unsigned int defaultbg = 0;
-static unsigned int defaultcs = 15;
-static unsigned int defaultrcs = 8;
+unsigned int defaultcs = 15;
+static unsigned int defaultrcs = 257;
 
 /*
  * Default shape of cursor
@@ -219,8 +221,8 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ TERMMOD,              XK_K,           kscrollup,      {.i =  2} },
-	{ TERMMOD,              XK_J,           kscrolldown,    {.i =  2} },
+	{ TERMMOD,              XK_K,           kscrollup,      {.i =  1} },
+	{ TERMMOD,              XK_J,           kscrolldown,    {.i =  1} },
 	{ TERMMOD,              XK_U,           kscrollup,      {.i = -1} },
 	{ TERMMOD,              XK_D,           kscrolldown,    {.i = -1} },
 
@@ -281,8 +283,12 @@ static Key key[] = {
 	{ XK_KP_Right,      XK_ANY_MOD,     "\033Ov",       +1,    0},
 	{ XK_KP_Right,      XK_ANY_MOD,     "\033[C",        0,   -1},
 	{ XK_KP_Right,      XK_ANY_MOD,     "\033OC",        0,   +1},
+	{ XK_KP_Prior,      ControlMask,    "\033[5;5~",     0,    0},
 	{ XK_KP_Prior,      ShiftMask,      "\033[5;2~",     0,    0},
 	{ XK_KP_Prior,      XK_ANY_MOD,     "\033[5~",       0,    0},
+	{ XK_KP_Next,       ControlMask,    "\033[6;5~",     0,    0},
+	{ XK_KP_Next,       ShiftMask,      "\033[6;2~",     0,    0},
+	{ XK_KP_Next,       XK_ANY_MOD,     "\033[6~",       0,    0},
 	{ XK_KP_Begin,      XK_ANY_MOD,     "\033[E",        0,    0},
 	{ XK_KP_End,        ControlMask,    "\033[J",        0,    0},
 	{ XK_KP_End,        ControlMask,    "\033[1;5F",     0,    0},
@@ -290,8 +296,6 @@ static Key key[] = {
 	{ XK_KP_End,        ShiftMask,      "\033[1;2F",     0,    0},
 	{ XK_KP_End,        XK_ANY_MOD,     "\033[F",        0,    0},
 	{ XK_KP_End,        XK_ANY_MOD,     "\033[4~",      +1,    0},
-	{ XK_KP_Next,       ShiftMask,      "\033[6;2~",     0,    0},
-	{ XK_KP_Next,       XK_ANY_MOD,     "\033[6~",       0,    0},
 	{ XK_KP_Insert,     ShiftMask,      "\033[2;2~",    +1,    0},
 	{ XK_KP_Insert,     ShiftMask,      "\033[4l",      -1,    0},
 	{ XK_KP_Insert,     ControlMask,    "\033[L",       -1,    0},
@@ -377,6 +381,7 @@ static Key key[] = {
 	{ XK_Home,          ShiftMask,      "\033[2J",       0,    0},
 	{ XK_Home,          ShiftMask,      "\033[1;2H",     0,    0},
 	{ XK_Home,          XK_ANY_MOD,     "\033[H",        0,    0},
+	{ XK_Home,          XK_ANY_MOD,     "\033[1~",      +1,    0},
 	{ XK_End,           ControlMask,    "\033[J",        0,    0},
 	{ XK_End,           ControlMask,    "\033[1;5F",     0,    0},
 	{ XK_End,           ShiftMask,      "\033[K",        0,    0},
