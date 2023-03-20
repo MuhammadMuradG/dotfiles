@@ -1,6 +1,16 @@
 # Custom zsh theme by Grant Buster
-# useful unicode chars: ━┏┗ ┓┛  ─╭╰ ╮╯
-# use to search unicode chars: https://shapecatcher.com/
+# useful unicode chars: ━┏┗ ┓┛  ─╭╰ ╮╯, for more https://shapecatcher.com/
+#
+# Some important function:
+# %F{color} Setting the foreground color
+# %K{color} Setting the background color
+# %F (%f) Start (stop) using a different foreground colour
+# %K (%k) Start (stop) using a different bacKground colour
+# %B (%b) Start (stop) boldface mode
+#
+# %M (%m) The short form of the current hostname
+# %n The current username
+
 
 function set_color() {
 	# custom colors for different hosts.
@@ -10,9 +20,6 @@ function set_color() {
 	echo "%F{$COLOR}"
 }
 
-# %F (%f) Start (stop) using a different foreground colour,
-# %K (%k) Start (stop) using a different bacKground colour and
-# %B (%b) Start (stop) boldface mode.
 function reset() {
 	echo "%f%k%b"
 }
@@ -30,11 +37,11 @@ function inbox() {
 }
 
 function user_host_prompt_info() {
-    echo "$(inbracket %n%{$fg[red]%}@%F{075}%M)"
+    echo "$(inbracket %n%F{red}@%F{075}%M)"
 }
 
 function env_prompt_info() {
-	if [ ! -z "${VIRTUAL_ENV}" ]; then
+	if [[ ! -z ${VIRTUAL_ENV} ]]; then
 		echo "$(inbracket "%F{213}venv::`basename \"$VIRTUAL_ENV\"`")"
 	fi
 }
@@ -82,17 +89,26 @@ function prompt-length() {
 
 function set-prompt() {
 	local top_left=" $(set_color)╭$(env_prompt_info)$(chyph)$(directory)"
+
+	if [[ ! -z ${INCOGNITO_MODE} ]]; then
+		local bottom_left=" $(set_color)╰─$(inbracket "%F{red}IncognitoMode$(set_color)")->$(reset) "
+	else
+		local bottom_left=" $(set_color)╰─>$(reset) "
+	fi
+
 	local top_right="$(git_prompt_info)$(user_host_prompt_info)$(set_color)─╮$(reset)"
-	local bottom_left=" $(set_color)╰─>$(reset) "
 	local bottom_right='$(last_command_status)'"$(chyph)$(chyph)$(current_time)$(set_color)─╯$(reset)"
 
 	PROMPT=$'\n'$(fill-line "$top_left" "$top_right")$'\n'$bottom_left
 	RPROMPT=$bottom_right
 }
 
+
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd set-prompt
 
+
+# GIT theme configurations
 ZSH_THEME_GIT_PROMPT_PREFIX="$(set_color)[$(reset)git::"
 ZSH_THEME_GIT_PROMPT_SUFFIX="$(set_color)]$(reset)$(chyph)"
 ZSH_THEME_GIT_PROMPT_DIRTY=" %F{196}✘ $(reset)"

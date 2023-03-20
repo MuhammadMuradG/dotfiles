@@ -5,7 +5,11 @@ SAVEHIST=1000
 setopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
+
+
+# The func compinstall can be # run by a user to set up the completion
+# system for use, which also provides options for more advanced usage.
+# The following lines were added by compinstall.
 zstyle :compinstall filename '/home/MuhammadMouradFbsd/.zshrc'
 
 autoload -Uz compinit
@@ -54,7 +58,8 @@ export PAGER=less      # zathura or less
 
 # Set additional options
 setopt INC_APPEND_HISTORY   # Commands are added to the history immediately
-setopt HIST_IGNORE_ALL_DUPS # Not writing duplicates to the history
+setopt HIST_IGNORE_ALL_DUPS # Don't writing duplicated commands to the history
+setopt HIST_IGNORE_SPACE    # Don't writing leading space commands to the history
 setopt prompt_subst         # Reevaluate the prompt each displaying time
 
 # Bind keys
@@ -98,6 +103,8 @@ zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=34=31=33
 
 # My aliases. '-g': for global, allow using anywhere in the commands.
 alias -g full-update='sudo freebsd-update fetch; sudo freebsd-update install; sudo pkg update; sudo pkg upgrade -y; sudo pkg autoremove -y; sudo pkg clean -ay'
+alias incognito=' export INCOGNITO_MODE=1; unset HISTFILE'
+alias deincognito=" export INCOGNITO_MODE=''; fc -p ~/.histfile"
 
 # Load my theme
 source ~/.zsh-theme
