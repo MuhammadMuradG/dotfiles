@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "RobotoMono Nerd Font Mono:pixelsize=10";
+static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
@@ -16,7 +16,7 @@ static int borderpx = 2;
  * 4: value of shell in /etc/passwd
  * 5: value of shell in config.h
  */
-static char *shell = "/usr/local/bin/zsh";
+static char *shell = "/bin/sh";
 char *utmp = NULL;
 /* scroll program: to enable use a string like "scroll" */
 char *scroll = NULL;
@@ -95,53 +95,33 @@ unsigned int tabspaces = 8;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-	// Light Mode
-	// 8 normal colors
-	//[0] = "#fbf1c7", // hard contrast: #f9f5d7 / soft contrast: #f2e5bc
-	//[1] = "#ea6962", // red
-	//[2] = "#a9b665", // green
-	//[3] = "#d8a657", // yellow
-	//[4] = "#7daea3", // blue
-	//[5] = "#d3869b", // magenta
-	//[6] = "#89b482", // cyan
-	//[7] = "#7c6f64", // white
+	/* 8 normal colors */
+	"black",
+	"red3",
+	"green3",
+	"yellow3",
+	"blue2",
+	"magenta3",
+	"cyan3",
+	"gray90",
 
-	//// 8 bright colors
-	//[8]  = "#928374", // black
-	//[9]  = "#ef938e", // red
-	//[10] = "#bbc585", // green
-	//[11] = "#e1bb7e", // yellow
-	//[12] = "#9dc2ba", // blue
-	//[13] = "#e1acbb", // magenta
-	//[14] = "#a7c7a2", // cyan
-	//[15] = "#3c3836", // white
+	/* 8 bright colors */
+	"gray50",
+	"red",
+	"green",
+	"yellow",
+	"#5c5cff",
+	"magenta",
+	"cyan",
+	"white",
 
-	// Dark Mode
-	// 8 normal colors
-	[0] = "#282828", // hard contrast: #1d2021 / soft contrast: #32302f
-	[1] = "#ea6962", // red
-	[2] = "#a9b665", // green
-	[3] = "#d8a657", // yellow
-	[4] = "#7daea3", // blue
-	[5] = "#d3869b", // magenta
-	[6] = "#89b482", // cyan
-	[7] = "#d4be98", // white
+	[255] = 0,
 
-	// 8 bright colors
-	[8]  = "#928374", // black
-	[9]  = "#ef938e", // red
-	[10] = "#bbc585", // green
-	[11] = "#e1bb7e", // yellow
-	[12] = "#9dc2ba", // blue
-	[13] = "#e1acbb", // magenta
-	[14] = "#a7c7a2", // cyan
-	[15] = "#e2d3ba", // white
-
-	// more colors can be added after 255 to use with defaultxx
-	[256] = "#cccccc",
-	[257] = "#555555",
-	[258] = "gray90", /* default foreground colour */
-	[259] = "black", /* default background colour */
+	/* more colors can be added after 255 to use with DefaultXX */
+	"#cccccc",
+	"#555555",
+	"gray90", /* default foreground colour */
+	"black", /* default background colour */
 };
 
 
@@ -149,9 +129,9 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 15;
-unsigned int defaultbg = 0;
-unsigned int defaultcs = 15;
+unsigned int defaultfg = 258;
+unsigned int defaultbg = 259;
+unsigned int defaultcs = 256;
 static unsigned int defaultrcs = 257;
 
 /*
@@ -173,7 +153,7 @@ static unsigned int rows = 24;
 /*
  * Default colour and shape of the mouse cursor
  */
-static unsigned int mouseshape = XC_left_ptr;
+static unsigned int mouseshape = XC_xterm;
 static unsigned int mousefg = 7;
 static unsigned int mousebg = 0;
 
@@ -204,7 +184,7 @@ static MouseShortcut mshortcuts[] = {
 };
 
 /* Internal keyboard shortcuts. */
-#define MODKEY Mod4Mask
+#define MODKEY Mod1Mask
 #define TERMMOD (ControlMask|ShiftMask)
 
 static Shortcut shortcuts[] = {
@@ -221,11 +201,6 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ TERMMOD,              XK_K,           kscrollup,      {.i =  1} },
-	{ TERMMOD,              XK_J,           kscrolldown,    {.i =  1} },
-	{ TERMMOD,              XK_U,           kscrollup,      {.i = -1} },
-	{ TERMMOD,              XK_D,           kscrolldown,    {.i = -1} },
-
 };
 
 /*
@@ -267,10 +242,10 @@ static uint ignoremod = Mod2Mask|XK_SWITCH_MOD;
  */
 static Key key[] = {
 	/* keysym           mask            string      appkey appcursor */
-	{ XK_KP_Home,       ShiftMask,      "\033[2J",       0,    0},
-	{ XK_KP_Home,       ShiftMask,      "\033[1;2H",     0,    0},
-	{ XK_KP_Home,       XK_ANY_MOD,     "\033[H",        0,    0},
-	{ XK_KP_Home,       XK_ANY_MOD,     "\033[1~",      +1,    0},
+	{ XK_KP_Home,       ShiftMask,      "\033[2J",       0,   -1},
+	{ XK_KP_Home,       ShiftMask,      "\033[1;2H",     0,   +1},
+	{ XK_KP_Home,       XK_ANY_MOD,     "\033[H",        0,   -1},
+	{ XK_KP_Home,       XK_ANY_MOD,     "\033[1~",       0,   +1},
 	{ XK_KP_Up,         XK_ANY_MOD,     "\033Ox",       +1,    0},
 	{ XK_KP_Up,         XK_ANY_MOD,     "\033[A",        0,   -1},
 	{ XK_KP_Up,         XK_ANY_MOD,     "\033OA",        0,   +1},
@@ -283,19 +258,16 @@ static Key key[] = {
 	{ XK_KP_Right,      XK_ANY_MOD,     "\033Ov",       +1,    0},
 	{ XK_KP_Right,      XK_ANY_MOD,     "\033[C",        0,   -1},
 	{ XK_KP_Right,      XK_ANY_MOD,     "\033OC",        0,   +1},
-	{ XK_KP_Prior,      ControlMask,    "\033[5;5~",     0,    0},
 	{ XK_KP_Prior,      ShiftMask,      "\033[5;2~",     0,    0},
 	{ XK_KP_Prior,      XK_ANY_MOD,     "\033[5~",       0,    0},
-	{ XK_KP_Next,       ControlMask,    "\033[6;5~",     0,    0},
+	{ XK_KP_Begin,      XK_ANY_MOD,     "\033[E",        0,    0},
+	{ XK_KP_End,        ControlMask,    "\033[J",       -1,    0},
+	{ XK_KP_End,        ControlMask,    "\033[1;5F",    +1,    0},
+	{ XK_KP_End,        ShiftMask,      "\033[K",       -1,    0},
+	{ XK_KP_End,        ShiftMask,      "\033[1;2F",    +1,    0},
+	{ XK_KP_End,        XK_ANY_MOD,     "\033[4~",       0,    0},
 	{ XK_KP_Next,       ShiftMask,      "\033[6;2~",     0,    0},
 	{ XK_KP_Next,       XK_ANY_MOD,     "\033[6~",       0,    0},
-	{ XK_KP_Begin,      XK_ANY_MOD,     "\033[E",        0,    0},
-	{ XK_KP_End,        ControlMask,    "\033[J",        0,    0},
-	{ XK_KP_End,        ControlMask,    "\033[1;5F",     0,    0},
-	{ XK_KP_End,        ShiftMask,      "\033[K",        0,    0},
-	{ XK_KP_End,        ShiftMask,      "\033[1;2F",     0,    0},
-	{ XK_KP_End,        XK_ANY_MOD,     "\033[F",        0,    0},
-	{ XK_KP_End,        XK_ANY_MOD,     "\033[4~",      +1,    0},
 	{ XK_KP_Insert,     ShiftMask,      "\033[2;2~",    +1,    0},
 	{ XK_KP_Insert,     ShiftMask,      "\033[4l",      -1,    0},
 	{ XK_KP_Insert,     ControlMask,    "\033[L",       -1,    0},
@@ -306,7 +278,7 @@ static Key key[] = {
 	{ XK_KP_Delete,     ControlMask,    "\033[3;5~",    +1,    0},
 	{ XK_KP_Delete,     ShiftMask,      "\033[2K",      -1,    0},
 	{ XK_KP_Delete,     ShiftMask,      "\033[3;2~",    +1,    0},
-	{ XK_KP_Delete,     XK_ANY_MOD,     "\033[3~",      -1,    0},
+	{ XK_KP_Delete,     XK_ANY_MOD,     "\033[P",       -1,    0},
 	{ XK_KP_Delete,     XK_ANY_MOD,     "\033[3~",      +1,    0},
 	{ XK_KP_Multiply,   XK_ANY_MOD,     "\033Oj",       +2,    0},
 	{ XK_KP_Add,        XK_ANY_MOD,     "\033Ok",       +2,    0},
@@ -374,19 +346,19 @@ static Key key[] = {
 	{ XK_Delete,        ControlMask,    "\033[3;5~",    +1,    0},
 	{ XK_Delete,        ShiftMask,      "\033[2K",      -1,    0},
 	{ XK_Delete,        ShiftMask,      "\033[3;2~",    +1,    0},
-	{ XK_Delete,        XK_ANY_MOD,     "\033[3~",      -1,    0},
+	{ XK_Delete,        XK_ANY_MOD,     "\033[P",       -1,    0},
 	{ XK_Delete,        XK_ANY_MOD,     "\033[3~",      +1,    0},
 	{ XK_BackSpace,     XK_NO_MOD,      "\177",          0,    0},
 	{ XK_BackSpace,     Mod1Mask,       "\033\177",      0,    0},
-	{ XK_Home,          ShiftMask,      "\033[2J",       0,    0},
-	{ XK_Home,          ShiftMask,      "\033[1;2H",     0,    0},
-	{ XK_Home,          XK_ANY_MOD,     "\033[H",        0,    0},
-	{ XK_Home,          XK_ANY_MOD,     "\033[1~",      +1,    0},
-	{ XK_End,           ControlMask,    "\033[J",        0,    0},
-	{ XK_End,           ControlMask,    "\033[1;5F",     0,    0},
-	{ XK_End,           ShiftMask,      "\033[K",        0,    0},
-	{ XK_End,           ShiftMask,      "\033[1;2F",     0,    0},
-	{ XK_End,           XK_ANY_MOD,     "\033[F",        0,    0},
+	{ XK_Home,          ShiftMask,      "\033[2J",       0,   -1},
+	{ XK_Home,          ShiftMask,      "\033[1;2H",     0,   +1},
+	{ XK_Home,          XK_ANY_MOD,     "\033[H",        0,   -1},
+	{ XK_Home,          XK_ANY_MOD,     "\033[1~",       0,   +1},
+	{ XK_End,           ControlMask,    "\033[J",       -1,    0},
+	{ XK_End,           ControlMask,    "\033[1;5F",    +1,    0},
+	{ XK_End,           ShiftMask,      "\033[K",       -1,    0},
+	{ XK_End,           ShiftMask,      "\033[1;2F",    +1,    0},
+	{ XK_End,           XK_ANY_MOD,     "\033[4~",       0,    0},
 	{ XK_Prior,         ControlMask,    "\033[5;5~",     0,    0},
 	{ XK_Prior,         ShiftMask,      "\033[5;2~",     0,    0},
 	{ XK_Prior,         XK_ANY_MOD,     "\033[5~",       0,    0},
@@ -499,4 +471,4 @@ static uint selmasks[] = {
 static char ascii_printable[] =
 	" !\"#$%&'()*+,-./0123456789:;<=>?"
 	"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_"
-	"`abcdefghijklmnopqrstuvwxyz{|}~";
+	"`abcdefghijklmnopqrstuvwxyz{|}~

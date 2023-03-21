@@ -1,12 +1,10 @@
 /* See LICENSE file for copyright and license details. */
 
 /* interval between updates (in ms) */
-const unsigned int interval = 300;
+const unsigned int interval = 1000;
 
 /* text to show if no value can be retrieved */
 static const char unknown_str[] = "n/a";
-
-static const char* const SEPARATOR = "  ";
 
 /* maximum output string length */
 #define MAXLEN 2048
@@ -66,32 +64,6 @@ static const char* const SEPARATOR = "  ";
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  */
 static const struct arg args[] = {
-	/* function          format          argument */
-    { separator,        "│",               NULL },
-	{ netspeed_rx,      "%s",             "wlan0" },
-	{ netspeed_tx,      "%s",             "wlan0" }, 
-    { separator,        SEPARATOR,         NULL },
-
-	{ wifi_perc,        " %s%%",          "wlan0" },
-	{ separator,        SEPARATOR,         NULL },
-
-	{ battery_perc,     "🔋%s%%",           NULL },
-	{ separator,        SEPARATOR,         NULL },
-
-	{ ram_perc,         " %s%%",          NULL },
-	{ separator,        SEPARATOR,         NULL },
-
-	{ cpu_perc,         " [%s%%",         NULL },
-	{ temp,             ", %s℃]",          "tz0" },
-	{ separator,        SEPARATOR,         NULL },
-
-	{ vol_perc,         " %s%%",          "/dev/mixer" },
-	{ separator,        SEPARATOR,         NULL },
-
-	{ keymap,           " %s",            NULL },
-	{ separator,        SEPARATOR,         NULL },
-
-	{ datetime,         " %s",            "%a,%d %b" },
-	{ separator,        SEPARATOR,         NULL },
-	{ datetime,         " %s",            "%I:%M%p" },
+	/* function format          argument */
+	{ datetime, "%s",           "%F %T" },
 };
