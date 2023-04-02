@@ -106,6 +106,12 @@ alias -g full-update='sudo freebsd-update fetch; sudo freebsd-update install; su
 alias incognito=' export INCOGNITO_MODE=1; unset HISTFILE'
 alias deincognito=" export INCOGNITO_MODE=''; fc -p ~/.histfile"
 
+# Check if incognito mode is activated
+if [[ ! -z ${INCOGNITO_MODE} ]]; then
+	fc -p ~/.histfile
+	unset HISTFILE
+fi
+
 # Load my theme
 source ~/.zsh-theme
 
