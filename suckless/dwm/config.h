@@ -26,9 +26,9 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       0,            1,           -1 },
+	/* class          instance         title      tags mask     iscentered   isfloating   monitor */
+	{ NULL,           NULL,            NULL,      0,            0,           0,           -1 },
+	{ "st-256color",  "st-256color",   "rover",   0,            1,           1,           -1 },
 };
 
 /* layout(s) */
@@ -58,6 +58,7 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]       = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]        = { "st", NULL };
+static const char *explorer[]       = { "st", "rover", NULL };
 static const char *browser[]        = { "firefox", "-p", NULL };
 static const char *lockcmd[]        = { "slock", NULL };
 static const char *pdfviewer[]      = { "evince", NULL };
@@ -68,6 +69,7 @@ static const char *volumedowncmd[]  = { "mixer", "vol", "-5", NULL };
 static Key keys[] = {
 
 	/* modifier                     key         function        custom argument */
+	{ MODKEY|ShiftMask,             XK_x,       spawn,          {.v = explorer } },
 	{ MODKEY|ShiftMask,             XK_w,       spawn,          {.v = browser } },
 	{ MODKEY|ShiftMask,             XK_s,       spawn,          {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_v,       spawn,          {.v = pdfviewer } },
