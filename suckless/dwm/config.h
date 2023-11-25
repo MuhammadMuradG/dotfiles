@@ -62,9 +62,9 @@ static const char *explorer[]       = { "st", "rover", NULL };
 static const char *browser[]        = { "firefox", "-p", NULL };
 static const char *lockcmd[]        = { "slock", NULL };
 static const char *pdfviewer[]      = { "evince", NULL };
-static const char *volumemutecmd[]  = { "mixer", "vol", "0", NULL };
-static const char *volumeupcmd[]    = { "mixer", "vol", "+5", NULL };
-static const char *volumedowncmd[]  = { "mixer", "vol", "-5", NULL };
+static const char *volumemutecmd[]  = { "mixer", "vol.volume=0", NULL };
+static const char *volumeupcmd[]    = { "mixer", "vol.volume=+0.05", NULL };
+static const char *volumedowncmd[]  = { "mixer", "vol.volume=-0.05", NULL };
 
 static Key keys[] = {
 
