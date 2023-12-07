@@ -38,3 +38,7 @@ xorg-minimal
 xrandr
 zathura-pdf-poppler
 zsh
+
+# For wallpaper and transparency
+feh
+xcompmgr
