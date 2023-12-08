@@ -2,6 +2,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int gappx     = 5;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -82,6 +83,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_y,       changefocusopacity,   {.f = -0.025} },
 	{ MODKEY|ShiftMask,             XK_z,       changeunfocusopacity, {.f = +0.025} },
 	{ MODKEY|ShiftMask,             XK_m,       changeunfocusopacity, {.f = -0.025} },
+	{ MODKEY|ShiftMask,             XK_minus,   setgaps,              {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_plus,    setgaps,              {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_equal,   setgaps,              {.i = 0  } },
 	{ MODKEY|ShiftMask,             XK_F2,      spawn,                SHCMD("xrandr --output LVDS-1 --gamma 1.0:0.8:0.6 --brightness 0.9") },
 	{ MODKEY|ShiftMask,             XK_F3,      spawn,                SHCMD("xrandr --output LVDS-1 --gamma 1:1:1 --brightness 1") },
 
@@ -93,10 +97,10 @@ static Key keys[] = {
 	{ MODKEY,                       XK_k,       focusstack,           {.i = -1 } },
 	{ MODKEY,                       XK_i,       incnmaster,           {.i = +1 } },
 	{ MODKEY,                       XK_d,       incnmaster,           {.i = -1 } },
-	{ MODKEY,                       XK_h,       setmfact,             {.f = -0.05} },
-	{ MODKEY,                       XK_l,       setmfact,             {.f = +0.05} },
-	{ MODKEY|ShiftMask,             XK_h,       setcfact,             {.f = +0.25} },
-	{ MODKEY|ShiftMask,             XK_l,       setcfact,             {.f = -0.25} },
+	{ MODKEY,                       XK_h,       setmfact,             {.f = -0.03} },
+	{ MODKEY,                       XK_l,       setmfact,             {.f = +0.03} },
+	{ MODKEY|ShiftMask,             XK_h,       setcfact,             {.f = +0.03} },
+	{ MODKEY|ShiftMask,             XK_l,       setcfact,             {.f = -0.03} },
 	{ MODKEY|ShiftMask,             XK_o,       setcfact,             {.f =  0.00} },
 	{ MODKEY,                       XK_Return,  zoom,                 {0} },
 	{ MODKEY,                       XK_Tab,     view,                 {0} },
