@@ -5,7 +5,7 @@ static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const double activeopacity   = 0.85f;     /* Window opacity when it's focused (0 <= opacity <= 1) */
+static const double activeopacity   = 0.85f;    /* Window opacity when it's focused (0 <= opacity <= 1) */
 static const double inactiveopacity = 0.7f;     /* Window opacity when it's unfocused (0 <= opacity <= 1) */
 static const char *fonts[]          = { "RobotoMono Nerd Font:pixelsize=10:style=bold" };
 static const char dmenufont[]       = "RobotoMono Nerd Font:pixelsize=10";
