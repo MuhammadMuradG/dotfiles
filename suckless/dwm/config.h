@@ -75,15 +75,16 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_w,       spawn,                {.v = browser } },
 	{ MODKEY|ShiftMask,             XK_s,       spawn,                {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_v,       spawn,                {.v = pdfviewer } },
-	{ MODKEY|ShiftMask,             XK_F11,     spawn,                {.v = volumemutecmd } },
-	{ MODKEY|ShiftMask,             XK_F9,      spawn,                {.v = volumedowncmd } },
-	{ MODKEY|ShiftMask,             XK_F10,     spawn,                {.v = volumeupcmd } },
 	{ MODKEY|ShiftMask,             XK_a,       changefocusopacity,   {.f = +0.025} },
 	{ MODKEY|ShiftMask,             XK_y,       changefocusopacity,   {.f = -0.025} },
 	{ MODKEY|ShiftMask,             XK_z,       changeunfocusopacity, {.f = +0.025} },
 	{ MODKEY|ShiftMask,             XK_m,       changeunfocusopacity, {.f = -0.025} },
-	{ MODKEY|ShiftMask,             XK_F2,      spawn,                SHCMD("xrandr --output LVDS-1 --gamma 1.0:0.8:0.6 --brightness 0.9") },
-	{ MODKEY|ShiftMask,             XK_F3,      spawn,                SHCMD("xrandr --output LVDS-1 --gamma 1:1:1 --brightness 1") },
+
+	{ MODKEY,                       XK_F2,      spawn,                SHCMD("xrandr --output LVDS-1 --gamma 1.0:0.8:0.6 --brightness 0.9") },
+	{ MODKEY,                       XK_F3,      spawn,                SHCMD("xrandr --output LVDS-1 --gamma 1:1:1 --brightness 1") },
+	{ MODKEY,                       XK_F9,      spawn,                {.v = volumedowncmd } },
+	{ MODKEY,                       XK_F10,     spawn,                {.v = volumeupcmd } },
+	{ MODKEY,                       XK_F11,     spawn,                {.v = volumemutecmd } },
 
 	/* modifier                     key         function              argument */
 	{ MODKEY,                       XK_p,       spawn,                {.v = dmenucmd } },
