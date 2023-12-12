@@ -8,6 +8,8 @@ firefox
 fusefs-jmtpfs
 fusefs-ntfs
 fusefs-ntfs-compression
+webcamd
+pwcview
 git
 libfsntfs
 libzmq4
