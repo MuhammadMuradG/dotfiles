@@ -1249,16 +1249,16 @@ movemouse(const Arg *arg)
 
 			nx = ocx + (ev.xmotion.x - x);
 			ny = ocy + (ev.xmotion.y - y);
-			if (abs(selmon->wx - nx) < snap)
+			if (abs(selmon->wx - nx) < snap - 1)
 				nx = selmon->wx;
-			else if (abs((selmon->wx + selmon->ww) - (nx + WIDTH(c))) < snap)
+			else if (abs((selmon->wx + selmon->ww) - (nx + WIDTH(c))) < snap - 1)
 				nx = selmon->wx + selmon->ww - WIDTH(c);
-			if (abs(selmon->wy - ny) < snap)
+			if (abs(selmon->wy - ny) < snap - 1)
 				ny = selmon->wy;
-			else if (abs((selmon->wy + selmon->wh) - (ny + HEIGHT(c))) < snap)
+			else if (abs((selmon->wy + selmon->wh) - (ny + HEIGHT(c))) < snap - 1)
 				ny = selmon->wy + selmon->wh - HEIGHT(c);
 			if (!c->isfloating && selmon->lt[selmon->sellt]->arrange
-			&& (abs(nx - c->x) > snap || abs(ny - c->y) > snap))
+			&& (abs(nx - c->x) > snap - 1 || abs(ny - c->y) > snap - 1))
 				togglefloating(NULL);
 			if (!selmon->lt[selmon->sellt]->arrange || c->isfloating)
 				resize(c, nx, ny, c->w, c->h, 1);
@@ -1780,7 +1780,6 @@ void
 tile(Monitor *m)
 {
 	unsigned int i, n, h, mw, my, ty;
-	int gappx = 15;
 	float mfacts = 0, sfacts = 0;
 	Client *c;
 
@@ -1796,17 +1795,17 @@ tile(Monitor *m)
 	if (n > m->nmaster)
 		mw = m->nmaster ? m->ww * m->mfact : 0;
 	else
-		mw = m->ww - gappx;
-	for (i = 0, my = ty = gappx, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
+		mw = m->ww - gap;
+	for (i = 0, my = ty = gap, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
 		if (i < m->nmaster) {
-			h = (m->wh - my) * (c->cfact / mfacts) - gappx;
-			resize(c, m->wx + gappx, m->wy + my, mw - (2*c->bw) - gappx, h - (2*c->bw), 0);
-			my += HEIGHT(c) + gappx;
+			h = (m->wh - my) * (c->cfact / mfacts) - gap;
+			resize(c, m->wx + gap, m->wy + my, mw - (2*c->bw) - gap, h - (2*c->bw), 0);
+			my += HEIGHT(c) + gap;
 			mfacts -= c->cfact;
 		} else {
-			h = (m->wh - ty) * (c->cfact / sfacts) - gappx;
-			resize(c, m->wx + mw + gappx, m->wy + ty, m->ww - mw - (2*c->bw) - 2*gappx, h - (2*c->bw), 0);
-			ty += HEIGHT(c) + gappx;
+			h = (m->wh - ty) * (c->cfact / sfacts) - gap;
+			resize(c, m->wx + mw + gap, m->wy + ty, m->ww - mw - (2*c->bw) - 2*gap, h - (2*c->bw), 0);
+			ty += HEIGHT(c) + gap;
 			sfacts -= c->cfact;
 		}
 }
