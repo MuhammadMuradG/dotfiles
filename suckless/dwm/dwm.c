@@ -487,31 +487,31 @@ buttonpress(XEvent *e)
 void
 changefocusopacity(const Arg *arg)
 {
-        if (!selmon->sel)
-                return;
-        selmon->sel->opacity+=arg->f;
-        if(selmon->sel->opacity > 1.0)
-                selmon->sel->opacity = 1.0;
+    if (!selmon->sel)
+        return;
+    selmon->sel->opacity+=arg->f;
+    if(selmon->sel->opacity > 1.0)
+        selmon->sel->opacity = 1.0;
 
-        if(selmon->sel->opacity < 0.1)
-                selmon->sel->opacity = 0.1;
+    if(selmon->sel->opacity < 0.1)
+        selmon->sel->opacity = 0.1;
 
-        opacity(selmon->sel, selmon->sel->opacity);
+    opacity(selmon->sel, selmon->sel->opacity);
 }
 
 void
 changeunfocusopacity(const Arg *arg)
 {
-        if (!selmon->sel)
-                return;
-        selmon->sel->unfocusopacity+=arg->f;
-        if(selmon->sel->unfocusopacity > 1.0)
-                selmon->sel->unfocusopacity = 1.0;
+    if (!selmon->sel)
+        return;
+    selmon->sel->unfocusopacity+=arg->f;
+    if(selmon->sel->unfocusopacity > 1.0)
+        selmon->sel->unfocusopacity = 1.0;
 
-        if(selmon->sel->unfocusopacity < 0.1)
-                selmon->sel->unfocusopacity = 0.1;
+    if(selmon->sel->unfocusopacity < 0.1)
+        selmon->sel->unfocusopacity = 0.1;
 
-        opacity(selmon->sel, selmon->sel->unfocusopacity);
+    opacity(selmon->sel, selmon->sel->unfocusopacity);
 }
 
 void
