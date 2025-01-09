@@ -87,6 +87,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_F10,     spawn,                {.v = volumeupcmd } },
 	{ MODKEY,                       XK_F11,     spawn,                {.v = volumemutecmd } },
 
+	{ MODKEY|ShiftMask,             XK_r,       spawn,                SHCMD("~/dotfiles/scripts/extend_to_hdmi_monitor.sh") },
+
 	/* modifier                     key         function              argument */
 	{ MODKEY,                       XK_p,       spawn,                {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return,  spawn,                {.v = termcmd } },
