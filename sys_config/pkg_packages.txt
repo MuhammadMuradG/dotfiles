@@ -23,6 +23,8 @@ neovim
 py3*-pynvim
 py3*-virtualenv
 nerd-fonts
+xorg-fonts
+noto-emoji
 npm
 pkg
 pkgconf
