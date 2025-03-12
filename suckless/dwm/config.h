@@ -8,8 +8,8 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const double activeopacity   = 0.9f;     /* Window opacity when it's focused (0 <= opacity <= 1) */
 static const double inactiveopacity = 0.7f;     /* Window opacity when it's unfocused (0 <= opacity <= 1) */
-static const char *fonts[]          = { "RobotoMono Nerd Font:pixelsize=10:style=bold" };
-static const char dmenufont[]       = "RobotoMono Nerd Font:pixelsize=10";
+static const char *fonts[]          = { "RobotoMono Nerd Font:pixelsize=15:style=bold" };
+static const char dmenufont[]       = "RobotoMono Nerd Font:pixelsize=15";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -81,12 +81,12 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_z,       changeunfocusopacity, {.f = +0.025} },
 	{ MODKEY|ShiftMask,             XK_m,       changeunfocusopacity, {.f = -0.025} },
 
-	{ MODKEY,                       XK_F2,      spawn,                SHCMD("xrandr --output LVDS-1 --gamma 1.0:0.8:0.6 --brightness 0.9") },
-	{ MODKEY,                       XK_F3,      spawn,                SHCMD("xrandr --output LVDS-1 --gamma 1:1:1 --brightness 1") },
-	{ MODKEY,                       XK_F4,      spawn,                SHCMD("~/dotfiles/scripts/extenddisplay.sh") },
-	{ MODKEY,                       XK_F9,      spawn,                {.v = volumedowncmd } },
-	{ MODKEY,                       XK_F10,     spawn,                {.v = volumeupcmd } },
-	{ MODKEY,                       XK_F11,     spawn,                {.v = volumemutecmd } },
+	{ MODKEY,                       XK_F5,      spawn,                SHCMD("xrandr --output default --gamma 1.0:0.8:0.6 --brightness 0.9") },
+	{ MODKEY,                       XK_F6,      spawn,                SHCMD("xrandr --output default --gamma 1:1:1 --brightness 1") },
+	{ MODKEY,                       XK_F12,     spawn,                SHCMD("~/dotfiles/scripts/extenddisplay.sh") },
+	{ MODKEY,                       XK_F3,      spawn,                {.v = volumeupcmd } },
+	{ MODKEY,                       XK_F2,      spawn,                {.v = volumedowncmd } },
+	{ MODKEY,                       XK_F1,      spawn,                {.v = volumemutecmd } },
 
 	/* modifier                     key         function              argument */
 	{ MODKEY,                       XK_p,       spawn,                {.v = dmenucmd } },

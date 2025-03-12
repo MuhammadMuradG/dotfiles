@@ -2,6 +2,9 @@
 # that will detect suitable package for your driver:
 drm-kmod
 
+# For nvidia cards
+nvidia-driver
+
 # Minimum and important apps for me:
 evince-lite
 firefox
