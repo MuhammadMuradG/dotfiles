@@ -1,6 +1,6 @@
 # Depending on your gpu card, however, the following is a meta-port package
 # that will detect suitable package for your driver:
-drm-kmod
+drm-515-kmod
 
 # For nvidia cards
 nvidia-driver
