@@ -14,17 +14,15 @@ git
 libfsntfs
 libzmq4
 linux_base-c7
-llvm11
 mplayer
 ncurses
 neovim
+py3*-pynvim
+py3*-virtualenv
 nerd-fonts
 npm
-p7zip
 pkg
 pkgconf
-py39-pynvim
-py39.virtualenv
 scrot
 setxkbmap
 sudo
@@ -33,12 +31,10 @@ tigervnc-viewer
 unrar
 vm-bhyve
 grub2-bhyve
-uefi-edk2-bhyve
 wget
 xclip
 xorg-minimal
 xrandr
-zathura-pdf-poppler
 zsh
 
 # For wallpaper and transparency
