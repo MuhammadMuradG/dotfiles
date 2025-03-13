@@ -10,7 +10,8 @@ bindkey -v
 # The func compinstall can be # run by a user to set up the completion
 # system for use, which also provides options for more advanced usage.
 # The following lines were added by compinstall.
-zstyle :compinstall filename '/home/MuhammadMouradFbsd/.zshrc'
+zstyle :compinstall filename '/home/MuhammadMuradFbsd/.zshrc'
+zstyle ':omz:alpha:lib:git' async-prompt no
 
 autoload -Uz compinit
 compinit
