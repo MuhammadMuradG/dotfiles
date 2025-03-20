@@ -81,6 +81,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_z,       changeunfocusopacity, {.f = +0.025} },
 	{ MODKEY|ShiftMask,             XK_m,       changeunfocusopacity, {.f = -0.025} },
 
+	{ MODKEY,                       XK_Print,   spawn,                SHCMD("scrot -s './Pictures/Screenshots/%Y-%m-%d-%T_$wx$h_scrot.png'") },
 	{ MODKEY,                       XK_F5,      spawn,                SHCMD("xrandr --output eDP-1 --gamma 1.0:0.8:0.6 --brightness 0.9") },
 	{ MODKEY,                       XK_F6,      spawn,                SHCMD("xrandr --output eDP-1 --gamma 1:1:1 --brightness 1") },
 	{ MODKEY,                       XK_F12,     spawn,                SHCMD("~/dotfiles/scripts/extenddisplay.sh") },
