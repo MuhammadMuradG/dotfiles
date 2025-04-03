@@ -104,8 +104,7 @@ main(int argc, char *argv[])
 			if (ferror(stdout))
 				die("puts:");
 		} else {
-			if (XStoreName(dpy, DefaultRootWindow(dpy), status)
-                            < 0) {
+			if (XStoreName(dpy, DefaultRootWindow(dpy), status) < 0) {
 				die("XStoreName: Allocation failed");
 			}
 			XFlush(dpy);

@@ -20,6 +20,8 @@ static const char* const SEPARATOR = "  ";
  *                                                     NULL on OpenBSD/FreeBSD
  * battery_remaining   battery remaining HH:MM         battery name (BAT0)
  *                                                     NULL on OpenBSD/FreeBSD
+ * battery_warning     beep warning on specified       threshold level (10)
+ *                     battery threshold precentage    not supported yet on Linux/OpenBSD
  * cpu_perc            cpu usage in percent            NULL
  * cpu_freq            cpu frequency in MHz            NULL
  * datetime            date and time                   format string (%F %T)
@@ -67,15 +69,16 @@ static const char* const SEPARATOR = "  ";
  */
 static const struct arg args[] = {
 	/* function          format          argument */
-    { separator,        "│",               NULL },
+	{ separator,        "│",               NULL },
 	{ netspeed_rx,      "%s",             "wlan0" },
 	{ netspeed_tx,      "%s",             "wlan0" }, 
-    { separator,        SEPARATOR,         NULL },
+	{ separator,        SEPARATOR,         NULL },
 
 	{ wifi_perc,        " %s%%",          "wlan0" },
 	{ separator,        SEPARATOR,         NULL },
 
-	{ battery_perc,     "🔋%s%%",           NULL },
+	{ battery_perc,     "🔋[%s%%",         NULL },
+	{ battery_warning,  ", %s]",           "10" },
 	{ separator,        SEPARATOR,         NULL },
 
 	{ ram_perc,         " %s%%",          NULL },

@@ -198,6 +198,7 @@
 	}
 #elif defined(__FreeBSD__)
 	#include <sys/sysctl.h>
+	#include <stdlib.h>
 
 	const char *
 	battery_perc(void)
@@ -248,5 +249,28 @@
 			return NULL;
 
 		return bprintf("%uh %02um", rem / 60, rem % 60);
+	}
+
+	const char *
+	battery_warning(const char *threshold)
+	{
+		int cap, state;
+		size_t lencap, lenstate;
+
+		lencap = sizeof(cap);
+		if (sysctlbyname("hw.acpi.battery.life", &cap, &lencap, NULL, 0) == -1
+				|| !lencap)
+			return NULL;
+
+		if (sysctlbyname("hw.acpi.battery.state", &state, &lenstate, NULL, 0) == -1
+				|| !lenstate)
+			return NULL;
+
+		if (cap <= atoi(threshold) && state == 1) {
+			system("beep");
+			return bprintf("🔌 Plug into power source!");
+		} else {
+			return bprintf("Safe power level!");
+		}
 	}
 #endif
