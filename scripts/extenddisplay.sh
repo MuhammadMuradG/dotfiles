@@ -1,8 +1,11 @@
 #!/bin/sh
 
-CHOICE=$(echo -e "Extend\nDuplicate" | dmenu -i -p "Choose the action on second monitor: ")
+CHOICE=$(echo -e "Refresh\nExtend\nDuplicate" | dmenu -i -p "Choose the action on second monitor: ")
 
-if [ "$CHOICE" = "Extend" ]
+if [ "$CHOICE" = "Refresh" ]
+then
+    xrandr
+elif [ "$CHOICE" = "Extend" ]
 then
     xrandr --output HDMI-2 --auto --right-of eDP-1
 elif [ "$CHOICE" = "Duplicate" ]
