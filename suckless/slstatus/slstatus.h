@@ -1,10 +1,13 @@
 /* See LICENSE file for copyright and license details. */
 
+/* notification */
+const char *notification(const char *notify_args);
+const char *battery_warning(const char *threshold);
+
 /* battery */
 const char *battery_perc(const char *);
 const char *battery_state(const char *);
 const char *battery_remaining(const char *);
-const char *battery_warning(const char *threshold);
 
 /* cpu */
 const char *cpu_freq(void);

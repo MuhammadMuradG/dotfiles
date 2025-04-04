@@ -88,11 +88,16 @@ main(int argc, char *argv[])
 
 		status[0] = '\0';
 		for (i = len = 0; i < LEN(args); i++) {
+			const char *formater = args[i].fmt;
 			if (!(res = args[i].func(args[i].args))) {
 				res = unknown_str;
 			}
+			if ((args[i].func) == notification && args[i].func(args[i].args) == NULL) {
+				res = "";
+				formater = "%s";
+			}
 			if ((ret = esnprintf(status + len, sizeof(status) - len,
-			                    args[i].fmt, res)) < 0) {
+			                    formater, res)) < 0) {
 				break;
 			}
 			len += ret;

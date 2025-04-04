@@ -20,8 +20,6 @@ static const char* const SEPARATOR = "  ";
  *                                                     NULL on OpenBSD/FreeBSD
  * battery_remaining   battery remaining HH:MM         battery name (BAT0)
  *                                                     NULL on OpenBSD/FreeBSD
- * battery_warning     beep warning on specified       threshold level (10)
- *                     battery threshold precentage    not supported yet on Linux/OpenBSD
  * cpu_perc            cpu usage in percent            NULL
  * cpu_freq            cpu frequency in MHz            NULL
  * datetime            date and time                   format string (%F %T)
@@ -42,6 +40,12 @@ static const char* const SEPARATOR = "  ";
  * load_avg            load average                    NULL
  * netspeed_rx         receive network speed           interface name (wlan0)
  * netspeed_tx         transfer network speed          interface name (wlan0)
+ * notify              display a message and           bell signal which 0 or 1
+ *                     optionally activate a bell      function name to trigger
+ *                     according to arguments          and its arguments all
+ *                                                     formatted as a string
+ *                                                     seperated by space
+ *                                                     (1 battery_warning 10)
  * num_files           number of files in a directory  path
  *                                                     (/home/foo/Inbox/cur)
  * ram_free            free memory in GB               NULL
@@ -68,17 +72,18 @@ static const char* const SEPARATOR = "  ";
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  */
 static const struct arg args[] = {
-	/* function          format          argument */
+	/* function          format            argument */
+	{ separator,        "│🚨",             NULL },
+	{ notification,     " 🔌 %s",          "1 battery_warning 5" },
 	{ separator,        "│",               NULL },
 	{ netspeed_rx,      "%s",             "wlan0" },
-	{ netspeed_tx,      "%s",             "wlan0" }, 
+	{ netspeed_tx,      "%s",             "wlan0" },
 	{ separator,        SEPARATOR,         NULL },
 
 	{ wifi_perc,        " %s%%",          "wlan0" },
 	{ separator,        SEPARATOR,         NULL },
 
-	{ battery_perc,     "🔋[%s%%",         NULL },
-	{ battery_warning,  ", %s]",           "10" },
+	{ battery_perc,     "🔋%s%%",          NULL },
 	{ separator,        SEPARATOR,         NULL },
 
 	{ ram_perc,         " %s%%",          NULL },
