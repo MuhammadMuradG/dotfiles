@@ -80,10 +80,10 @@ static const struct arg args[] = {
 	{ netspeed_tx,      "%s",             "wlan0" },
 	{ separator,        SEPARATOR,         NULL },
 
-	{ wifi_perc,        " %s%%",          "wlan0" },
+	{ wifi_perc,        "󰖩 %s%%",          "wlan0" },
 	{ separator,        SEPARATOR,         NULL },
 
-	{ battery_perc,     "🔋%s%%",          NULL },
+	{ battery_perc,     " %s%%",          NULL },
 	{ separator,        SEPARATOR,         NULL },
 
 	{ ram_perc,         " %s%%",          NULL },
@@ -93,7 +93,7 @@ static const struct arg args[] = {
 	{ temp,             ", %s℃]",          "tz0" },
 	{ separator,        SEPARATOR,         NULL },
 
-	{ vol_perc,         " %s%%",          "/dev/mixer" },
+	{ vol_perc,         " %s%%",          "/dev/mixer" },
 	{ separator,        SEPARATOR,         NULL },
 
 	{ keymap,           " %s",            NULL },

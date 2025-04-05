@@ -8,8 +8,8 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const double activeopacity   = 0.9f;     /* Window opacity when it's focused (0 <= opacity <= 1) */
 static const double inactiveopacity = 0.7f;     /* Window opacity when it's unfocused (0 <= opacity <= 1) */
-static const char *fonts[]          = { "RobotoMono Nerd Font:pixelsize=15:style=bold" };
-static const char dmenufont[]       = "RobotoMono Nerd Font:pixelsize=15";
+static const char *fonts[]          = { "DejaVuSansM Nerd Font:pixelsize=14:style=bold" };
+static const char dmenufont[]       = "DejaVuSansM Nerd Font:pixelsize=14";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
