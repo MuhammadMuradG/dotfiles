@@ -103,7 +103,7 @@ zstyle ':completion:*:options' list-colors '=^(-- *)=34'
 zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=34=31=33'
 
 # My aliases. '-g': for global, allow using anywhere in the commands.
-alias -g full-update='sudo freebsd-update fetch; sudo freebsd-update install; sudo pkg update; sudo pkg upgrade -y; sudo pkg autoremove -y; sudo pkg clean -ay'
+alias -g full-update='sudo freebsd-update fetch; sudo freebsd-update install; sudo pkg update -f; sudo pkg upgrade -y; sudo pkg autoremove -y; sudo pkg clean -ay'
 alias incognito=' export INCOGNITO_MODE=1; unset HISTFILE'
 alias deincognito=" export INCOGNITO_MODE=''; fc -p ~/.histfile"
 
