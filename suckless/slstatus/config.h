@@ -76,20 +76,20 @@ static const struct arg args[] = {
 	{ separator,        "│🚨",             NULL },
 	{ notification,     " 🔌 %s",          "1 battery_warning 5" },
 	{ separator,        "│",               NULL },
-	{ netspeed_rx,      "%s",             "wlan0" },
-	{ netspeed_tx,      "%s",             "wlan0" },
+	{ netspeed_rx,      "%8s",            "wlan0" },
+	{ netspeed_tx,      "%-8s",           "wlan0" },
 	{ separator,        SEPARATOR,         NULL },
 
 	{ wifi_perc,        "󰖩 %s%%",          "wlan0" },
 	{ separator,        SEPARATOR,         NULL },
 
-	{ battery_perc,     " %s%%",          NULL },
+	{ battery_perc,     "󱧥 %s%%",          NULL },
 	{ separator,        SEPARATOR,         NULL },
 
 	{ ram_perc,         " %s%%",          NULL },
 	{ separator,        SEPARATOR,         NULL },
 
-	{ cpu_perc,         " [%s%%",         NULL },
+	{ cpu_perc,         " [%-3s%%",       NULL },
 	{ temp,             ", %s℃]",          "tz0" },
 	{ separator,        SEPARATOR,         NULL },
 
