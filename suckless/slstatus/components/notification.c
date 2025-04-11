@@ -21,12 +21,19 @@ const char *battery_warning(const char *threshold) {
       !lencap)
     return NULL;
 
+  // Current status of the battery encoded in the following:
+  //      ACPI_BATT_STAT_DISCHARG (0x0001): Battery is discharging,
+  //      ACPI_BATT_STAT_CHARGING (0x0002): Battery is being charged
+  //      ACPI_BATT_STAT_CRITICAL (0x0004): Remaining battery life is
+  //                                        critically low.
+  // Note  that the status bits of each battery will be consolidated when
+  // ACPI_BATTERY_ALL_UNITS is	specified.
   lenstate = sizeof(state);
   if (sysctlbyname("hw.acpi.battery.state", &state, &lenstate, NULL, 0) == -1 ||
       !lenstate)
     return NULL;
 
-  if (cap <= atoi(threshold) && state == 1) {
+  if (cap <= atoi(threshold) && state != 2) {
     return "Plug into power source!";
   } else {
     return NULL;
