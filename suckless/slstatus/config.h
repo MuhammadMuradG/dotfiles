@@ -78,9 +78,9 @@ static const struct arg args[] = {
 	{ separator,        "│",               NULL },
 	{ separator,        SEPARATOR,         NULL },
 
-	{ wifi_perc,        "󰖩 [%s%%",          "wlan0" },
-	{ netspeed_rx,      ",%8s",            "wlan0" },
-	{ netspeed_tx,      "%-8s]",           "wlan0" },
+	{ wifi_perc,        "󰖩 [%s%%",         "wlan0" },
+	{ netspeed_rx,      ",%8s",           "wlan0" },
+	{ netspeed_tx,      "%-8s]",          "wlan0" },
 	{ separator,        SEPARATOR,         NULL },
 
 	{ battery_perc,     "󱧥 %s%%",          NULL },
