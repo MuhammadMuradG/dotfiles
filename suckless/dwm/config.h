@@ -61,33 +61,30 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]       = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]        = { "st", NULL };
+static const char *lockcmd[]        = { "slock", NULL };
 static const char *explorer[]       = { "st", "rover", NULL };
 static const char *browser[]        = { "firefox", "-p", NULL };
-static const char *lockcmd[]        = { "slock", NULL };
 static const char *pdfviewer[]      = { "evince", NULL };
-static const char *volumemutecmd[]  = { "mixer", "vol.volume=0", NULL };
-static const char *volumeupcmd[]    = { "mixer", "vol.volume=+0.05", NULL };
-static const char *volumedowncmd[]  = { "mixer", "vol.volume=-0.05", NULL };
 
 static Key keys[] = {
 
-	/* modifier                     key         function              custom argument */
+	/* modifier                     key         function              argument */
 	{ MODKEY|ShiftMask,             XK_x,       spawn,                {.v = explorer } },
-	{ MODKEY|ShiftMask,             XK_w,       spawn,                {.v = browser } },
 	{ MODKEY|ShiftMask,             XK_s,       spawn,                {.v = lockcmd } },
+	{ MODKEY|ShiftMask,             XK_w,       spawn,                {.v = browser } },
 	{ MODKEY|ShiftMask,             XK_v,       spawn,                {.v = pdfviewer } },
 	{ MODKEY|ShiftMask,             XK_a,       changefocusopacity,   {.f = +0.025} },
 	{ MODKEY|ShiftMask,             XK_y,       changefocusopacity,   {.f = -0.025} },
 	{ MODKEY|ShiftMask,             XK_z,       changeunfocusopacity, {.f = +0.025} },
 	{ MODKEY|ShiftMask,             XK_m,       changeunfocusopacity, {.f = -0.025} },
 
-	{ MODKEY,                       XK_Print,   spawn,                SHCMD("scrot -s './Pictures/Screenshots/%Y-%m-%d-%T_$wx$h_scrot.png'") },
+	{ MODKEY,                       XK_F1,      spawn,                SHCMD("mixer vol.volume=0") },
+	{ MODKEY,                       XK_F2,      spawn,                SHCMD("mixer vol.volume=-0.05") },
+	{ MODKEY,                       XK_F3,      spawn,                SHCMD("mixer vol.volume=+0.05") },
 	{ MODKEY,                       XK_F5,      spawn,                SHCMD("xrandr --output eDP-1 --gamma 1.0:0.8:0.6 --brightness 0.9") },
 	{ MODKEY,                       XK_F6,      spawn,                SHCMD("xrandr --output eDP-1 --gamma 1:1:1 --brightness 1") },
 	{ MODKEY,                       XK_F12,     spawn,                SHCMD("~/dotfiles/scripts/extenddisplay.sh") },
-	{ MODKEY,                       XK_F3,      spawn,                {.v = volumeupcmd } },
-	{ MODKEY,                       XK_F2,      spawn,                {.v = volumedowncmd } },
-	{ MODKEY,                       XK_F1,      spawn,                {.v = volumemutecmd } },
+	{ MODKEY,                       XK_Print,   spawn,                SHCMD("scrot -s './Pictures/Screenshots/%Y-%m-%d-%T_$wx$h_scrot.png'") },
 
 	/* modifier                     key         function              argument */
 	{ MODKEY,                       XK_p,       spawn,                {.v = dmenucmd } },
