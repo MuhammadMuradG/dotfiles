@@ -81,6 +81,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_F1,      spawn,                SHCMD("mixer vol.volume=0") },
 	{ MODKEY,                       XK_F2,      spawn,                SHCMD("mixer vol.volume=-0.05") },
 	{ MODKEY,                       XK_F3,      spawn,                SHCMD("mixer vol.volume=+0.05") },
+	{ MODKEY,                       XK_F4,      spawn,                SHCMD("~/dotfiles/scripts/sounddevice.sh") },
 	{ MODKEY,                       XK_F5,      spawn,                SHCMD("xrandr --output eDP-1 --gamma 1.0:0.8:0.6 --brightness 0.9") },
 	{ MODKEY,                       XK_F6,      spawn,                SHCMD("xrandr --output eDP-1 --gamma 1:1:1 --brightness 1") },
 	{ MODKEY,                       XK_F12,     spawn,                SHCMD("~/dotfiles/scripts/extenddisplay.sh") },
