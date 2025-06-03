@@ -31,6 +31,7 @@ static const Rule rules[] = {
 	 */
 	/* class          instance         title      tags mask     iscentered    isfloating    focusopacity    unfocusopacity    monitor */
 	{ "st-256color",  "st-256color",   "rover",   0,            1,            1,            activeopacity,  inactiveopacity,  -1 },
+	{ "st-256color",  "st-256color",   "sudo",    0,            1,            1,            activeopacity,  inactiveopacity,  -1 },
 };
 
 /* layout(s) */
