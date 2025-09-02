@@ -83,7 +83,7 @@ function prompt-length() {
 				(( m = x + (y - x) / 2 ))
 				(( ${${(%):-$1%$m(l.x.y)}[-1]} = m ))
 			done
-	    fi
+		fi
 	echo $x
 }
 
@@ -92,7 +92,7 @@ function set-prompt() {
 
 	if [[ ! -z ${INCOGNITO_MODE} ]]; then
 		local bottom_left=" $(set_color)╰─$(inbracket "%F{red}IncognitoMode$(set_color)")->$(reset) "
-		local top_right="$(git_prompt_info)$(inbracket Anonymous%F{red}@%F{075}Hostname)$(set_color)─╮$(reset)"
+		local top_right="$(git_prompt_info)$(inbracket Anonymous%F{red}@%F{075}HostMachine)$(set_color)─╮$(reset)"
 	else
 		local bottom_left=" $(set_color)╰─>$(reset) "
 		local top_right="$(git_prompt_info)$(user_host_prompt_info)$(set_color)─╮$(reset)"
