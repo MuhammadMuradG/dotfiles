@@ -30,6 +30,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class          instance         title      tags mask     iscentered    isfloating    focusopacity    unfocusopacity    monitor */
+	{ "st-256color",  "st-256color",   "nvim",    0,            1,            1,            activeopacity,  inactiveopacity,  -1 },
 	{ "st-256color",  "st-256color",   "rover",   0,            1,            1,            activeopacity,  inactiveopacity,  -1 },
 	{ "st-256color",  "st-256color",   "sudo",    0,            1,            1,            activeopacity,  inactiveopacity,  -1 },
 };
@@ -63,6 +64,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[]       = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]        = { "st", NULL };
 static const char *lockcmd[]        = { "slock", NULL };
+static const char *todo[]           = { "st", "nvim", "todo.md", NULL };
 static const char *explorer[]       = { "st", "rover", NULL };
 static const char *browser[]        = { "firefox", "-p", NULL };
 static const char *pdfviewer[]      = { "evince", NULL };
@@ -70,6 +72,7 @@ static const char *pdfviewer[]      = { "evince", NULL };
 static Key keys[] = {
 
 	/* modifier                     key         function              argument */
+	{ MODKEY|ShiftMask,             XK_t,       spawn,                {.v = todo } },
 	{ MODKEY|ShiftMask,             XK_x,       spawn,                {.v = explorer } },
 	{ MODKEY|ShiftMask,             XK_s,       spawn,                {.v = lockcmd } },
 	{ MODKEY|ShiftMask,             XK_w,       spawn,                {.v = browser } },
