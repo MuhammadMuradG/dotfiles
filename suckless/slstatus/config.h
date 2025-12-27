@@ -40,12 +40,6 @@ static const char* const SEPARATOR = "  ";
  * load_avg            load average                    NULL
  * netspeed_rx         receive network speed           interface name (wlan0)
  * netspeed_tx         transfer network speed          interface name (wlan0)
- * notify              display a message and           bell signal which 0 or 1
- *                     optionally activate a bell      function name to trigger
- *                     according to arguments          and its arguments all
- *                                                     formatted as a string
- *                                                     seperated by space
- *                                                     (1 battery_warning 10)
  * num_files           number of files in a directory  path
  *                                                     (/home/foo/Inbox/cur)
  * ram_free            free memory in GB               NULL
@@ -73,8 +67,6 @@ static const char* const SEPARATOR = "  ";
  */
 static const struct arg args[] = {
 	/* function          format            argument */
-	{ separator,        "│🚨",             NULL },
-	{ notification,     " 🔌 %s",          "1 battery_warning 5" },
 	{ separator,        "│",               NULL },
 	{ separator,        SEPARATOR,         NULL },
 
