@@ -906,6 +906,29 @@ static int cpyfile(const char *srcpath) {
     }
     return ret;
 }
+static int lnkfile(const char *srcpath) {
+    int ret;
+    struct stat st;
+    char dstpath[PATH_MAX];
+
+    strcpy(dstpath, CWD);
+    strcat(dstpath, srcpath + strlen(rover.marks.dirpath));
+
+    ret = lstat(srcpath, &st);
+    if (ret < 0)
+        return ret;
+
+    if (S_ISLNK(st.st_mode)) {
+        ret = readlink(srcpath, BUF1, BUFLEN - 1);
+        if (ret < 0)
+            return ret;
+        BUF1[ret] = '\0';
+        ret = symlink(BUF1, dstpath);
+    } else {
+        ret = symlink(srcpath, dstpath);
+    }
+    return ret;
+}
 static int adddir(const char *path) {
     int ret;
     struct stat st;
@@ -1472,6 +1495,14 @@ paste_path_fail:
                     message(RED, "Cannot copy to the same path.");
             } else
                 message(RED, "No entries marked for copying.");
+        } else if (!strcmp(key, RVK_MARK_LINK)) {
+            if (rover.marks.nentries) {
+                if (strcmp(CWD, rover.marks.dirpath))
+                    process_marked(adddir, lnkfile, NULL, "Linking", "Linked");
+                else
+                    message(RED, "Cannot create symlinks in the same path.");
+            } else
+                message(RED, "No entries marked for linking.");
         } else if (!strcmp(key, RVK_MARK_MOVE)) {
             if (rover.marks.nentries) {
                 if (strcmp(CWD, rover.marks.dirpath))

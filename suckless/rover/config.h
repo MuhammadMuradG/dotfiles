@@ -35,6 +35,7 @@
 #define RVK_MARKALL     "a"
 #define RVK_MARK_DELETE "X"
 #define RVK_MARK_COPY   "C"
+#define RVK_MARK_LINK   "L"
 #define RVK_MARK_MOVE   "V"
 
 /* Colors available: DEFAULT, RED, GREEN, YELLOW, BLUE, CYAN, MAGENTA, WHITE, BLACK. */
