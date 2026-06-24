@@ -104,8 +104,8 @@ zstyle ':completion:*:*:kill:*' list-colors '=(#b) #([0-9]#)*( *[a-z])*=34=31=33
 
 # My aliases. '-g': for global, allow using anywhere in the commands.
 alias -g full-update='sudo freebsd-update fetch; sudo freebsd-update install; sudo pkg update -f; sudo pkg upgrade -y; sudo pkg autoremove -y; sudo pkg clean -ay'
-alias incognito=' export INCOGNITO_MODE=1; unset HISTFILE'
-alias deincognito=" export INCOGNITO_MODE=''; fc -p ~/.histfile"
+alias incognito=' export INCOGNITO_MODE=1; unset HISTFILE; clear'
+alias deincognito=" export INCOGNITO_MODE=''; clear; fc -p ~/.histfile"
 
 # Check if incognito mode is activated
 if [[ ! -z ${INCOGNITO_MODE} ]]; then
