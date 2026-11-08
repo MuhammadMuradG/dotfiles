@@ -67,7 +67,7 @@ static const char *lockcmd[]        = { "slock", NULL };
 static const char *todo[]           = { "st", "nvim", "todo.md", NULL };
 static const char *explorer[]       = { "st", "rover", NULL };
 static const char *browser[]        = { "firefox", "-p", NULL };
-static const char *pdfviewer[]      = { "evince", NULL };
+static const char *pdfviewer[]      = { "pdfcraft", NULL };
 static const char *screenshotcmd[]  = { "scrot", "-s", "./Pictures/Screenshots/%Y-%m-%d-%T_$wx$h_scrot.png", NULL };
 
 static Key keys[] = {
